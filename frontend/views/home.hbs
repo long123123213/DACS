@@ -1,0 +1,405 @@
+{{!-- <h2>Danh sách sản phẩm</h2>
+
+<section class="product-list">
+    {{#if products.length}}
+        {{#each products}}
+            <div class="product">
+                <img src="{{this.image}}" alt="{{this.name}}">
+                <h3>{{this.name}}</h3>
+                <p>Giá: {{this.price}} VND</p>
+                <button onclick="addToCart('{{this._id}}', '{{this.name}}', '{{this.price}}', '{{this.image}}')">Thêm vào giỏ hàng</button>
+
+                <button onclick="buyNow('{{this.id}}')">Mua ngay</button>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>Không có sản phẩm nào.</p>
+    {{/if}}
+</section> 
+
+
+ <script>
+    fetch("http://localhost:5001/api/products")
+        .then(response => response.json())
+        .then(products => {
+            const productList = document.getElementById("productList");
+            productList.innerHTML = products.map(product => `
+                <div class="product">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Giá: ${product.price} VND</p>
+                    <button>Mua ngay</button>
+                </div>
+            `).join("");
+        })
+        .catch(error => console.error("Lỗi:", error));
+</script> 
+ <script>
+    function addToCart(productId, name, price, image) {
+        fetch("http://localhost:5002/api/cart/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ productId, name, price, image })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message || "Đã thêm vào giỏ hàng!");
+        })
+        .catch(error => console.error("Lỗi:", error));
+    }
+
+    function buyNow(productId) {
+        window.location.href = `/checkout?productId=${productId}`;
+    }
+</script> 
+     
+     --}}
+
+
+<!-- Banner Section -->
+    <section id="banner">
+        <!-- Banner dạng carousel -->
+        <div class="main-banner">
+            <div class="carousel">
+                <!-- Các ảnh trong carousel -->
+                <div class="carousel-item" onclick="handleSlideClick(event)">
+                    <img src="img/banner/banner1.jpg" alt="Banner 1">
+                </div>
+                <div class="carousel-item" onclick="handleSlideClick(event)">
+                    <img src="img/banner/banner2.jpg" alt="Banner 2">
+                </div>
+                <div class="carousel-item" onclick="handleSlideClick(event)">
+                    <img src="img/banner/banner3.jpg" alt="Banner 3">
+                </div>
+
+                <!-- Chấm chỉ báo -->
+                <div class="carousel-dots">
+                    <span class="dot" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lưới danh mục sản phẩm được đặt bên dưới banner -->
+        <div class="category-grid">
+            <!-- Danh mục 1: Thiết Bị Điện Tử -->
+            <div class="category-card">
+                <h3>Thiết Bị Điện Tử</h3>
+                <div class="category-images">
+                    <div class="category-item">
+                        <a href="head.html"><img src="img/product/head.jpg" alt="Headset"></a>
+                        <p>Màn Hình</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="keyboard.html"><img src="img/product/keyboard.jpg" alt="Keyboard"></a>
+                        <p>Bàn Phím</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="mouse.html"><img src="img/product/mouse.jpg" alt="Mouse"></a>
+                        <p>Chuột Gaming</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="chair.html"><img src="img/product/chair.jpg" alt="Chair"></a>
+                        <p>Ghế Gaming</p>
+                    </div>
+                </div>
+                <a href="#" class="category-link">See more</a>
+            </div>
+
+            <!-- Danh mục 2: Điện Thoại Và Phụ Kiện -->
+            <div class="category-card">
+                <h3>Điện Thoại Và Phụ Kiện</h3>
+                <div class="category-images">
+                    <div class="category-item">
+                        <a href="phone.html"><img src="img/product/Ip16.jpg" alt="Điện Thoại"></a>
+                        <p>Iphone</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="sạc.html"><img src="img/product/sạc.jpg" alt="Sạc Điện Thoại"></a>
+                        <p>Sạc Điện Thoại</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="oplung.html"><img src="img/product/ốp lưng.jpg" alt="Ốp Điện Thoại"></a>
+                        <p>Ốp Điện Thoại</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="sac0day.html"><img src="img/product/sajc0day.jpg" alt="Sạc Không Dây"></a>
+                        <p>Sạc Không Dây</p>
+                    </div>
+                </div>
+                <a href="#" class="category-link">See more</a>
+            </div>
+
+            <!-- Danh mục 3: Đồ Gia Dụng -->
+            <div class="category-card">
+                <h3>Đồ Gia Dụng</h3>
+                <div class="category-images">
+                    <div class="category-item">
+                        <a href="dogiadung.html"><img src="img/product/dogiadung.jpg" alt="Đồ Gia Dụng"></a>
+                    </div>
+                </div>
+                <a href="#" class="category-link">See more</a>
+            </div>
+
+            <!-- Danh mục 4: Thời Trang -->
+            <div class="category-card">
+                <h3>Thời Trang</h3>
+                <div class="category-images">
+                    <div class="category-item">
+                        <a href="QuanAo.html"><img src="img/product/ao.jpg" alt="Quần Áo"></a>
+                    </div>
+                </div>
+                <a href="#" class="category-link">See more</a>
+            </div>
+
+            <!-- Danh mục 5: Làm Đẹp -->
+            <div class="category-card">
+                <h3>Làm Đẹp</h3>
+                <div class="category-images">
+                    <div class="category-item">
+                        <a href="kemat.html"><img src="img/product/kemat.jpg" alt="Kẻ mắt"></a>
+                        <p>Kẻ mắt</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="kemnen.html"><img src="img/product/kemnen.jpg" alt="Kem Nền"></a>
+                        <p>Kem Nền</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="phanma.html"><img src="img/product/phanma.jpg" alt="Phấn Má"></a>
+                        <p>Phấn Má</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="son.html"><img src="img/product/son.jpg" alt="Son Môi"></a>
+                        <p>Son Môi</p>
+                    </div>
+                </div>
+                <a href="#" class="category-link">See more</a>
+            </div>
+
+            <!-- Danh mục 6: Phụ Kiện Và Trang Sức -->
+            <div class="category-card">
+                <h3>Phụ Kiện Và Trang Sức</h3>
+                <div class="category-images">
+                    <div class="category-item">
+                        <a href="bongtai.html"><img src="img/product/bongtai.jpg" alt="Bông Tai"></a>
+                        <p>Bông Tai</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="daychuyen.html"><img src="img/product/daychuyen.jpg" alt="Dây Chuyền"></a>
+                        <p>Dây Chuyền</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="lactay.html"><img src="img/product/lactay.jpg" alt="Lắc Tay"></a>
+                        <p>Lắc Tay</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="nhan.html"><img src="img/product/nhan.jpg" alt="Nhẫn"></a>
+                        <p>Nhẫn</p>
+                    </div>
+                </div>
+                <a href="#" class="category-link">See more</a>
+            </div>
+
+            <!-- Danh mục 7: Giày Dép -->
+            <div class="category-card">
+                <h3>Giày Dép</h3>
+                <div class="category-images">
+                    <div class="category-item">
+                        <a href="giaytay.html"><img src="img/product/giaytay.jpg" alt="Giày Tây"></a>
+                        <p>Giày Tây</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="giaynike.html"><img src="img/product/giaynike.jpg" alt="Giày Nike"></a>
+                        <p>Giày Nike</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="depadidas.html"><img src="img/product/depadidas.jpg" alt="Dép Adidas"></a>
+                        <p>Dép Adidas</p>
+                    </div>
+                    <div class="category-item">
+                        <a href="depbanhmi.html"><img src="img/product/depbanhmi.jpg" alt="Dép Bánh Mì"></a>
+                        <p>Dép Bánh Mì</p>
+                    </div>
+                </div>
+                <a href="#" class="category-link">See more</a>
+            </div>
+
+            <!-- Danh mục 8: Sức Khỏe -->
+            <div class="category-card">
+                <h3>Sức Khỏe</h3>
+                <div class="category-images">
+                    <div class="category-item">
+                        <a href="thuoc.html"><img src="img/product/thuoc1.jpg" alt="Thuốc"></a>
+                    </div>
+                </div>
+                <a href="#" class="category-link">See more</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Products Section -->
+<section id="recommended-products" class="section-p1">
+    <a href="/product/productt" class="section-title-link">
+        <h2 class="section-title">Gợi Ý Hôm Nay</h2>
+    </a>
+    <div class="product-container">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="img/product/sacdp1.jpg" alt="Sản phẩm 1">
+                <span class="discount-label">-30%</span>
+            </div>
+            <div class="product-info">
+                <h3>Sạc Dự Phòng Orsen EW54 PD 20W</h3>
+                <p class="price">591.500 VNĐ</p>
+                <p class="sold">Đã bán 6k</p>
+            </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="img/product/aoW.jpg" alt="Sản phẩm 2">
+                <span class="discount-label">-41%</span>
+            </div>
+            <div class="product-info">
+                <h3>[MINI DROP] WSTAR T-SHIRT</h3>
+                <p class="price">189.000 VNĐ</p>
+                <p class="sold">Đã bán 1.2k</p>
+            </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="img/product/ghecth.jpg" alt="Sản phẩm 3">
+                <span class="discount-label">-29%</span>
+            </div>
+            <div class="product-info">
+                <h3>Ghế Công Thái Học CTH-95</h3>
+                <p class="price">975.000 VNĐ</p>
+                <p class="sold">Đã bán 5.5k</p>
+            </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="img/product/mayanh.jpg" alt="Sản phẩm 4">
+                <span class="discount-label">-48%</span>
+            </div>
+            <div class="product-info">
+                <h3>CLUBLU - Máy Ảnh Kỹ Thuật Số</h3>
+                <p class="price">346.000 VNĐ</p>
+                <p class="sold">Đã bán 1.1k</p>
+            </div>
+        </div>
+        <!-- Product 5 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="img/product/kemboiseo.jpg" alt="Sản phẩm 5">
+                <span class="discount-label">-50%</span>
+            </div>
+            <div class="product-info">
+                <h3>Kem bôi seo Chính Hãng</h3>
+                <p class="price">54.000 VNĐ</p>
+                <p class="sold">Đã bán 1.9k</p>
+            </div>
+        </div>
+        <!-- Product 6 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="img/product/mitom.jpg" alt="Sản phẩm 6">
+                <span class="discount-label">-50%</span>
+            </div>
+            <div class="product-info">
+                <h3>Gói Sỉ Tần Kho - Thùng</h3>
+                <p class="price">96.000 VNĐ</p>
+                <p class="sold">Đã bán 1.9k</p>
+            </div>
+        </div>
+    </div>
+    <div class="view-more">
+        <a href="shop.html" class="view-more-btn">Xem Thêm</a>
+    </div>
+</section>
+
+<!-- Chat Support Section -->
+<div class="chat-support">
+    <div class="chat-icon">
+        <i class="fa-solid fa-comment-dots"></i>
+        <span class="chat-badge">16</span>
+    </div>
+    <div class="chat-box">
+        <div class="chat-header">
+            <h4>Chat với nhân viên hỗ trợ</h4>
+            <i class="fa-solid fa-xmark close-chat"></i>
+        </div>
+        <div class="chat-body">
+            <p>Xin chào! Chúng tôi có thể giúp gì cho bạn hôm nay?</p>
+        </div>
+        <div class="chat-footer">
+            <input type="text" placeholder="Nhập tin nhắn của bạn...">
+            <button class="send-message"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<script>
+        let slideIndex = 0;
+        let slides = document.getElementsByClassName("carousel-item");
+        let dots = document.getElementsByClassName("dot");
+
+        // Hiển thị slide đầu tiên khi tải trang
+        showSlides(slideIndex);
+
+        // Tự động chuyển slide sau mỗi 3 giây
+        setInterval(() => {
+            changeSlide(1);
+        }, 3000);
+
+        // Hàm xử lý khi nhấp vào ảnh
+        function handleSlideClick(event) {
+            const slideWidth = event.target.clientWidth;
+            const clickX = event.clientX - event.target.getBoundingClientRect().left;
+
+            // Nếu nhấp vào nửa bên trái, chuyển về slide trước
+            if (clickX < slideWidth / 2) {
+                changeSlide(-1);
+            }
+            // Nếu nhấp vào nửa bên phải, chuyển đến slide tiếp theo
+            else {
+                changeSlide(1);
+            }
+        }
+
+        // Hàm chuyển slide
+        function changeSlide(n) {
+            slideIndex += n;
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+            if (slideIndex < 0) {
+                slideIndex = slides.length - 1;
+            }
+            showSlides(slideIndex);
+        }
+
+        // Hàm hiển thị slide hiện tại
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlides(slideIndex);
+        }
+
+        // Hàm hiển thị slide và cập nhật chấm chỉ báo
+        function showSlides(n) {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[n].style.display = "block";
+            dots[n].className += " active";
+        }
+    </script>
+</body>
+</html>

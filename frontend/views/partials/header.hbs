@@ -1,0 +1,99 @@
+<section id="header">
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="/user/store">Kênh người bán</a>
+        </div>
+        <div class="top-bar-right">
+            <div class="notification">
+                <a href="#"><i class="fa-solid fa-bell"></i> Thông báo <span class="notification-count">1</span></a>
+                <div class="notification-content">
+                    <p>Đơn hàng #12345 của bạn đã được đặt thành công!</p>
+                    <a href="#">Xem chi tiết đơn hàng</a>
+                </div>
+            </div>
+            <a href="#">Trợ giúp</a>
+            <div id="user-status">
+                <a href="/user">Đăng nhập</a>
+            </div>
+        </div>
+    </div>
+    <div class="main-header">
+        <a href="index.html" class="logo">
+            <h1>MegaStore VN</h1>
+        </a>
+        <div>
+            <ul id="navbar">
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/product/productt">Sản phẩm</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="info.html">Thông tin</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+                <li id="lg-bag">
+                    <a href="/cart"><i class="fa-solid fa-cart-shopping"></i> <span>0</span></a>
+                </li>
+                <li class="search-bar">
+                    <div class="search-container">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm..." class="search-input">
+                        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        console.log("Header script chạy");
+        const token = localStorage.getItem("token");
+        const userStatusDiv = document.getElementById("user-status");
+        console.log("Token từ localStorage:", token);
+
+        if (!userStatusDiv) {
+            console.error("Không tìm thấy user-status div");
+            return;
+        }
+
+        if (token) {
+            try {
+                const res = await fetch("http://localhost:5000/api/auth/user", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+                console.log("Trạng thái API user:", res.status);
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log("Dữ liệu từ API user:", data);
+
+                if (data.user && data.user.username) {
+                    userStatusDiv.innerHTML = `
+                        <a>Xin chào, ${data.user.username}</a>
+                        <a href="#" id="logout">Đăng xuất</a>
+                    `;
+                    document.getElementById("logout").addEventListener("click", (e) => {
+                        e.preventDefault();
+                        localStorage.removeItem("token");
+                        window.location.reload();
+                    });
+                } else {
+                    console.log("Không có thông tin người dùng, xóa token");
+                    localStorage.removeItem("token");
+                    userStatusDiv.innerHTML = `<a href="/user">Đăng nhập</a>`;
+                }
+            } catch (error) {
+                console.error("Lỗi khi gọi API user:", error);
+                localStorage.removeItem("token");
+                userStatusDiv.innerHTML = `<a href="/user">Đăng nhập</a>`;
+            }
+        } else {
+            console.log("Không có token, hiển thị nút đăng nhập");
+            userStatusDiv.innerHTML = `<a href="/user">Đăng nhập</a>`;
+        }
+    });
+</script>

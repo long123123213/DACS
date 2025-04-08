@@ -1,0 +1,1007 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f0f2f5; /* Màu nền xám nhạt */
+}
+
+/* Header Section */
+#header {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo h1 {
+    color: #fff;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+#navbar {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+#navbar li {
+    margin-left: 20px;
+}
+
+#navbar li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#navbar li a:hover {
+    color: #ccc;
+}
+
+/* Notification Styling */
+.notification {
+    position: relative;
+    display: inline-block;
+}
+
+.notification .notification-count {
+    background-color: #ff6347;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    position: relative;
+    top: -5px;
+    left: 2px;
+}
+
+.notification-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 30px;
+    right: 0;
+    padding: 10px;
+}
+
+.notification:hover .notification-content {
+    display: block;
+}
+
+.notification-content p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.notification-content a {
+    color: #ff6347;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    text-align: center;
+}
+
+.notification-content a:hover {
+    text-decoration: underline;
+}
+
+/* User Info (Hello: Admin) */
+.user-info {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+.user-info i {
+    margin-right: 5px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    position: relative;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.hamburger-menu {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #f5f5f5;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 150px;
+    border-radius: 5px;
+    overflow: visible;
+}
+
+.hamburger-menu.active {
+    display: block;
+}
+
+.hamburger-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+.hamburger-menu a:last-child {
+    border-bottom: none;
+}
+
+.hamburger-menu a:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+/* Seller Dashboard Wrapper */
+.seller-dashboard-wrapper {
+    display: flex;
+    margin-top: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #1a252f; /* Màu nền sidebar giống Shopee */
+    color: #fff;
+    min-height: calc(100vh - 70px);
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu .menu-item {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sidebar-menu .menu-item-header {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-menu .menu-item-header i:first-child {
+    margin-right: 10px;
+}
+
+.sidebar-menu .menu-item-header:hover {
+    background-color: #2c3e50; /* Màu khi hover */
+}
+
+.sidebar-menu .menu-item.active .menu-item-header {
+    background-color: #3498db; /* Màu khi active */
+}
+
+.sidebar-menu .submenu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    background-color: #2c3e50; /* Màu nền của sub-menu */
+}
+
+.sidebar-menu .submenu.active {
+    display: block;
+}
+
+.sidebar-menu .submenu li {
+    padding: 10px 20px 10px 40px; /* Thụt lề sub-menu */
+}
+
+.sidebar-menu .submenu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.sidebar-menu .submenu li a:hover {
+    color: #3498db; /* Màu chữ khi hover sub-menu */
+}
+
+.submenu-toggle {
+    transition: transform 0.3s ease;
+}
+
+.submenu-toggle.active {
+    transform: rotate(180deg); /* Xoay mũi tên khi sub-menu mở */
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f2f5;
+}
+
+/* Dashboard Container */
+.section-p1 {
+    padding: 40px 0;
+}
+
+.section-title {
+    font-size: 28px;
+    color: #ee4d2d;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.dashboard-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+/* Add Product Form */
+.add-product-form {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-form h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Product List */
+.product-list {
+    flex: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-list h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#product-table th,
+#product-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#product-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+}
+
+#product-table td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#product-table td {
+    font-size: 14px;
+    color: #555;
+}
+
+#product-table .action-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#product-table .action-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Chat Support */
+.chat-support {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-icon {
+    background-color: #ee4d2d;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.chat-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #fff;
+    color: #ee4d2d;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ee4d2d;
+}
+
+.chat-box {
+    display: none;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+}
+
+.chat-box.active {
+    display: block;
+}
+
+.chat-header {
+    background-color: #ee4d2d;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.chat-header .close-chat {
+    cursor: pointer;
+}
+
+.chat-body {
+    padding: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-body p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.chat-footer {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.chat-footer .send-message {
+    background-color: #ee4d2d;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-footer .send-message:hover {
+    background-color: #d43f21;
+}
+
+/* Footer Section */
+#footer {
+    background-color: #f1f1f1;
+    padding: 50px 80px;
+    border-top: 1px solid #ddd;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-container .col {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.footer-container .col .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.footer-container .col .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.footer-container .col .logo h1 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.footer-container .col h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.footer-container .col p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.footer-container .col p strong {
+    color: #333;
+}
+
+.footer-container .col a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-container .col a:hover {
+    color: #ff6347;
+    text-decoration: underline;
+}
+
+/* Social Media Icons */
+.follow .icon {
+    display: flex;
+    gap: 10px;
+}
+
+.follow .icon a {
+    color: #666;
+    font-size: 18px;
+}
+
+.follow .icon a:hover {
+    color: #ff6347;
+}
+
+/* App Download Section */
+.install .row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.install .row img {
+    width: 120px;
+    border-radius: 5px;
+}
+
+.install p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.install .payment {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.install .payment img {
+    width: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .seller-dashboard-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .add-product-form,
+    .product-list {
+        flex: 1;
+    }
+
+    #product-table th,
+    #product-table td {
+        font-size: 12px;
+    }
+
+    #product-table td img {
+        width: 40px;
+        height: 40px;
+    }
+
+    #navbar li {
+        margin-left: 10px;
+    }
+
+    .user-info {
+        font-size: 14px;
+    }
+
+    .hamburger {
+        font-size: 18px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-container .col {
+        margin-bottom: 30px;
+    }
+
+    .install .row {
+        justify-content: center;
+    }
+
+    .install .payment {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-box {
+        width: 250px;
+    }
+
+    #navbar li {
+        margin-left: 5px;
+    }
+
+    .user-info {
+        font-size: 12px;
+    }
+
+    .hamburger {
+        font-size: 16px;
+    }
+}
+</style>
+<body>
+    <!-- Header Section -->
+    <section id="header">
+        <!-- Main Header -->
+        <div class="main-header">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <h1>MegaStore VN</h1>
+            </a>
+
+            <!-- Navigation -->
+            <div>
+                <ul id="navbar">
+                    <!-- Mục Thông báo -->
+                    <li class="notification">
+                        <a href="#"><i class="fa-solid fa-bell"></i> <span class="notification-count">1</span></a>
+                        <div class="notification-content">
+                            <p>Đơn hàng #12345 đã được đặt!</p>
+                            <a href="#">Xem chi tiết đơn hàng</a>
+                        </div>
+                    </li>
+                    <!-- Phần Hello: Admin -->
+                    <li class="user-info">
+                        <i class="fa-solid fa-map-marker-alt"></i> Hello: Admin
+                    </li>
+                    <!-- Biểu tượng ba gạch với dropdown -->
+                    <li class="hamburger">
+                        <i class="fa-solid fa-bars"></i>
+                        <div class="hamburger-menu">
+                            <a href="account.html">Tài khoản</a>
+                            <a href="logout.html">Đăng xuất</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seller Dashboard Wrapper -->
+    <div class="seller-dashboard-wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <!-- Quản Lý Đơn Hàng -->
+                <li class="menu-item has-submenu">
+                    <div class="menu-item-header">
+                        <i class="fa-solid fa-box"></i> Quản Lý Đơn Hàng
+                        <i class="fa-solid fa-chevron-down submenu-toggle"></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="#">Tất cả</a></li>
+                        <li><a href="#">Giao Hàng Loạt</a></li>
+                        <li><a href="#">Bán Giao Đơn Hàng</a></li>
+                        <li><a href="#">Đơn Trả hàng/Hoàn tiền hoặc Hủy</a></li>
+                        <li><a href="#">Cài Đặt Vận Chuyển</a></li>
+                    </ul>
+                </li>
+
+                <!-- Quản Lý Sản Phẩm -->
+                <li class="menu-item has-submenu">
+                    <div class="menu-item-header">
+                        <i class="fa-solid fa-cube"></i> Quản Lý Sản Phẩm
+                        <i class="fa-solid fa-chevron-down submenu-toggle"></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="#">Tất Cả Sản Phẩm</a></li>
+                        <li><a href="#">Thêm Sản Phẩm</a></li>
+                    </ul>
+                </li>
+
+                <!-- Kênh Marketing -->
+                <li class="menu-item has-submenu">
+                    <div class="menu-item-header">
+                        <i class="fa-solid fa-bullhorn"></i> Kênh Marketing
+                        <i class="fa-solid fa-chevron-down submenu-toggle"></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="#">Kênh Marketing</a></li>
+                        <li><a href="#">Đấu Giá Rẻ Vô Dịch</a></li>
+                        <li><a href="#">Quảng Cáo Shopee</a></li>
+                        <li><a href="#">Tăng Doanh Cùng KOL</a></li>
+                        <li><a href="#">Live & Video</a></li>
+                        <li><a href="#">Khuyến Mãi của Shop</a></li>
+                        <li><a href="#">Flash Sale Của Shop</a></li>
+                        <li><a href="#">Mã Giảm Giá Của Shop</a></li>
+                        <li><a href="#">Chương Trình Shopee</a></li>
+                    </ul>
+                </li>
+
+                <!-- Chăm sóc khách hàng -->
+                <li class="menu-item has-submenu">
+                    <div class="menu-item-header">
+                        <i class="fa-solid fa-headset"></i> Chăm sóc khách hàng
+                        <i class="fa-solid fa-chevron-down submenu-toggle"></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="#">Quản lý Chat</a></li>
+                        <li><a href="#">Quản lý Đánh Giá</a></li>
+                    </ul>
+                </li>
+
+                <!-- Tài Chính -->
+                <li class="menu-item has-submenu">
+                    <div class="menu-item-header">
+                        <i class="fa-solid fa-wallet"></i> Tài Chính
+                        <i class="fa-solid fa-chevron-down submenu-toggle"></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="#">Doanh Thu</a></li>
+                        <li><a href="#">Số dư TK Shopee</a></li>
+                        <li><a href="#">Tài Khoản Ngân Hàng</a></li>
+                    </ul>
+                </li>
+
+                <!-- Dữ liệu -->
+                <li class="menu-item has-submenu">
+                    <div class="menu-item-header">
+                        <i class="fa-solid fa-chart-bar"></i> Dữ liệu
+                        <i class="fa-solid fa-chevron-down submenu-toggle"></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="#">Phân Tích Bán Hàng</a></li>
+                        <li><a href="#">Hiệu Quả Hoạt Động</a></li>
+                    </ul>
+                </li>
+
+                <!-- Quản Lý Shop -->
+                <li class="menu-item has-submenu">
+                    <div class="menu-item-header">
+                        <i class="fa-solid fa-store"></i> Quản Lý Shop
+                        <i class="fa-solid fa-chevron-down submenu-toggle"></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="#">Hồ Sơ Shop</a></li>
+                        <li><a href="#">Trang Trí Shop</a></li>
+                        <li><a href="#">Thiết Lập Shop</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Seller Dashboard Section -->
+            <section id="seller-dashboard" class="section-p1">
+                <h2 class="section-title">Kênh Người Bán</h2>
+                <div class="dashboard-container">
+                    <!-- Form to Add Product -->
+                    <div class="add-product-form">
+                        <h3>Đăng Sản Phẩm Mới</h3>
+                        <form id="product-form">
+                            <div class="form-group">
+                                <label for="product-name">Tên Sản Phẩm</label>
+                                <input type="text" id="product-name" placeholder="Nhập tên sản phẩm" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price">Giá Sản Phẩm (VNĐ)</label>
+                                <input type="number" id="product-price" placeholder="Nhập giá sản phẩm" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-discount">Giảm Giá (%)</label>
+                                <input type="number" id="product-discount" placeholder="Nhập % giảm giá (nếu có)">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-image">Hình Ảnh Sản Phẩm</label>
+                                <input type="file" id="product-image" accept="image/*" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-count">Số Lượng</label>
+                                <input type="file" id="product-count" placeholder="Nhập số lượng">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-description">Mô Tả Sản Phẩm</label>
+                                <textarea id="product-description" placeholder="Nhập mô tả sản phẩm" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Đăng Sản Phẩm</button>
+                        </form>
+                    </div>
+
+                    <!-- Product List -->
+                    <div class="product-list">
+                        <h3>Danh Sách Sản Phẩm Đã Đăng</h3>
+                        <table id="product-table">
+                            <thead>
+                                <tr>
+                                    <th>Hình Ảnh</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Giá (VNĐ)</th>
+                                    <th>Giảm Giá</th>
+                                    <th>Mô Tả</th>
+                                    <th>Số Lượng</th>
+                                </tr>
+                            </thead>
+                            <tbody id="product-table-body">
+                                <!-- Danh sách sản phẩm sẽ được thêm bằng JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Chat Support Section -->
+    <div class="chat-support">
+        <div class="chat-icon">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span class="chat-badge">16</span>
+        </div>
+        <div class="chat-box">
+            <div class="chat-header">
+                <h4>Chat với nhân viên hỗ trợ</h4>
+                <i class="fa-solid fa-xmark close-chat"></i>
+            </div>
+            <div class="chat-body">
+                <p>Xin chào! Chúng tôi có thể giúp gì cho bạn hôm nay?</p>
+            </div>
+            <div class="chat-footer">
+                <input type="text" placeholder="Nhập tin nhắn của bạn...">
+                <button class="send-message"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // Chat Support Toggle
+const chatIcon = document.querySelector('.chat-icon');
+const chatBox = document.querySelector('.chat-box');
+const closeChat = document.querySelector('.close-chat');
+
+chatIcon.addEventListener('click', () => {
+    chatBox.classList.toggle('active');
+});
+
+closeChat.addEventListener('click', () => {
+    chatBox.classList.remove('active');
+});
+
+// Handle Product Form Submission
+const productForm = document.getElementById('product-form');
+const productTableBody = document.getElementById('product-table-body');
+
+productForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Get form values
+    const productName = document.getElementById('product-name').value;
+    const productPrice = document.getElementById('product-price').value;
+    const productDiscount = document.getElementById('product-discount').value || '0%';
+    const productImage = document.getElementById('product-image').files[0];
+    const productDescription = document.getElementById('product-description').value;
+
+    // Create image URL for display
+    const imageUrl = productImage ? URL.createObjectURL(productImage) : 'https://via.placeholder.com/50';
+
+    // Create new table row
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td><img src="${imageUrl}" alt="${productName}"></td>
+        <td>${productName}</td>
+        <td>${parseInt(productPrice).toLocaleString('vi-VN')} VNĐ</td>
+        <td>${productDiscount}%</td>
+        <td>${productDescription}</td>
+        <td><button class="action-btn" onclick="deleteProduct(this)">Xóa</button></td>
+    `;
+
+    // Add row to table
+    productTableBody.appendChild(newRow);
+
+    // Reset form
+    productForm.reset();
+});
+
+// Function to delete product
+function deleteProduct(button) {
+    button.parentElement.parentElement.remove();
+}
+
+// Hamburger Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    hamburgerMenu.classList.toggle('active');
+});
+
+// Đóng dropdown khi click ra ngoài
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+        hamburgerMenu.classList.remove('active');
+    }
+});
+
+// Sidebar Submenu Toggle
+const menuItems = document.querySelectorAll('.menu-item.has-submenu');
+
+menuItems.forEach(item => {
+    const header = item.querySelector('.menu-item-header');
+    const submenu = item.querySelector('.submenu');
+    const toggleIcon = header.querySelector('.submenu-toggle');
+
+    header.addEventListener('click', () => {
+        // Toggle submenu
+        submenu.classList.toggle('active');
+        toggleIcon.classList.toggle('active');
+    });
+});
+</script>

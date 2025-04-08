@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>Quản lý Sản phẩm</h2>
+
+    <div class="container">
+<form id="productForm" action="http://localhost:5001/api/product" method="POST">
+    <input type="text" name="name" placeholder="Tên sản phẩm" required>
+     <input type="text" name="description" placeholder="Mô tả sản phẩm" required>
+     <input type="text" name="image" placeholder="URL hình ảnh" required>
+    <input type="text" name="price" placeholder="Giá sản phẩm" required>
+    
+    <button type="submit">Thêm sản phẩm</button>
+</form>
+
+        <section class="product-list" id="productList">
+            {{#each products}}
+                <div class="product">
+                    <img src="{{this.image}}" alt="{{this.name}}">
+                    <h3>{{this.name}}</h3>
+                    <p>Giá: {{this.price}} VND</p>
+                    <button class="edit-btn" onclick="editProduct('{{this._id}}')">Sửa</button>
+                    <button class="delete-btn" onclick="deleteProduct('{{this._id}}')">Xóa</button>
+                </div>
+            {{/each}}
+        </section>
+    </div>
+
+    <script>
+         
+        function renderProducts() {
+            const productList = document.getElementById("productList");
+            productList.innerHTML = products.map((product, index) => `
+                <div class="product">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Giá: ${product.price} VND</p>
+                    <button class="edit-btn" onclick="editProduct(${index})">Sửa</button>
+                    <button class="delete-btn" onclick="deleteProduct(${index})">Xóa</button>
+                </div>
+            `).join("");
+        }
+
+        
+
+    async function deleteProduct(id) {
+        if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+            try {
+                const response = await fetch(`http://localhost:5001/api/product/${id}`, {
+                    method: "DELETE",
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert("✅ Xóa thành công!");
+                    location.reload(); // Reload lại trang để cập nhật danh sách
+                } else {
+                    alert("❌ Lỗi xóa: " + result.message);
+                }
+            } catch (error) {
+                console.error("❌ Lỗi gửi request xóa:", error);
+                alert("❌ Xóa thất bại!");
+            }
+        }
+    }
+    async function editProduct(productId) {
+        const newName = prompt("Nhập tên mới:");
+        const newPrice = prompt("Nhập giá mới:");
+        const newImage = prompt("Nhập URL hình ảnh mới:");
+
+        if (!newName || !newPrice || !newImage) {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/product/${productId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: newName, price: newPrice, image: newImage })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert("✅ Cập nhật sản phẩm thành công!");
+                location.reload(); // Tải lại trang để cập nhật dữ liệu mới
+            } else {
+                alert("❌ Lỗi cập nhật: " + result.message);
+            }
+        } catch (error) {
+            console.error("❌ Lỗi:", error);
+            alert("❌ Cập nhật sản phẩm thất bại!");
+        }
+    }
+</script>
+
+   
+
+</body>
+</html>

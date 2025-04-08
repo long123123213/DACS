@@ -1,0 +1,96 @@
+<h2>Giỏ hàng của bạn</h2>
+
+<div id="cart-container">
+    <p>Đang tải giỏ hàng...</p>
+</div>
+
+<script>
+    let isUpdating = false;
+    async function fetchCart() {
+        try {
+            const response = await fetch("http://localhost:5002/api/cart");
+            const data = await response.json();
+
+            if (!response.ok) throw new Error(data.message || "Lỗi lấy giỏ hàng!");
+
+            renderCart(data.cart);
+        } catch (error) {
+            console.error("❌ Lỗi lấy giỏ hàng:", error);
+            document.getElementById("cart-container").innerHTML = "<p>Không thể tải giỏ hàng.</p>";
+        }
+    }
+
+    function renderCart(cart) {
+    const container = document.getElementById("cart-container");
+
+    if (!cart.length) {
+        container.innerHTML = "<p>Giỏ hàng trống.</p><a href='/'>Quay lại mua hàng</a>";
+        return;
+    }
+
+    let totalPrice = 0;
+    let cartHTML = `
+        <table border="1">
+            <tr>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thao tác</th>
+            </tr>
+    `;
+
+    cart.forEach((item) => {
+        // Chuyển giá tiền từ chuỗi có dấu chấm thành số
+        let priceNumber = parseFloat(item.price.replace(/\./g, '').replace(' VND', ''));
+        totalPrice += priceNumber * item.quantity;
+
+        cartHTML += `
+            <tr>
+                <td><img src="${item.image}" alt="${item.name}" width="50"></td>
+                <td>${item.name}</td>
+                <td>${item.price} VND</td>
+                <td>
+                    <button onclick="updateCart('${item.productId}', 'decrease')">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="updateCart('${item.productId}', 'increase')">+</button>
+                </td>
+                <td>
+                    <button onclick="updateCart('${item.productId}', 'remove')">Xóa</button>
+                </td>
+            </tr>
+        `;
+    });
+
+    // Định dạng lại tổng tiền có dấu chấm ngăn cách hàng nghìn
+    let formattedTotal = totalPrice.toLocaleString();
+
+    cartHTML += `</table><h3>Tổng tiền: <span id="total-price">${formattedTotal} VND</span></h3>`;
+    container.innerHTML = cartHTML;
+}
+
+
+    async function updateCart(productId, action) {
+    if (isUpdating) return; // Nếu đang cập nhật, không gọi API nữa
+    isUpdating = true;
+
+    try {
+        const response = await fetch(`http://localhost:5002/api/cart/update`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ productId, action })
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || "Lỗi cập nhật giỏ hàng!");
+
+        fetchCart(); // Cập nhật lại giao diện giỏ hàng
+    } catch (error) {
+        console.error("❌ Lỗi cập nhật giỏ hàng:", error);
+        alert("Lỗi khi cập nhật giỏ hàng!");
+    } finally {
+        isUpdating = false; // Reset trạng thái
+    }
+}
+    fetchCart(); // Gọi API lấy giỏ hàng khi tải trang
+</script>
