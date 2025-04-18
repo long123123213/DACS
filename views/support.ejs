@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hỗ trợ khách hàng - MegaStore VN</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/support.css">
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="left-section">
+                    <a href="/seller" class="seller-channel">Kênh người bán</a>
+                </div>
+                <div class="right-section">
+                    <a href="#"><i class="fas fa-bell"></i> Thông báo</a>
+                    <a href="#">Trợ giúp</a>
+                    <% if (typeof hoTen !== 'undefined' && hoTen) { %>
+                        <p>Xin chào, <%= hoTen %>!</p>
+                        <p><a href="/logout">Đăng xuất</a></p>
+                    <% } else { %>
+                        <p><a href="/login">Đăng nhập</a></p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container">
+                <div class="logo">
+                    <h1>MegaStore VN</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart">
+                    <a href="/cart" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/products">Sản phẩm</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">Thông tin</a></li>
+                    <li><a href="/contact">Liên hệ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Support Content -->
+    <div class="support-banner">
+        <div class="container">
+            <h1 class="text-center mb-4">Trung tâm hỗ trợ khách hàng</h1>
+            <p class="text-center text-white mb-0">Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7</p>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <!-- Quick Support Options -->
+        <div class="quick-support mb-5">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="support-card text-center">
+                        <div class="icon-circle mb-3">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4>Chat trực tuyến</h4>
+                        <p>Trò chuyện trực tiếp với nhân viên hỗ trợ</p>
+                        <button class="btn btn-primary">Bắt đầu chat</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card text-center">
+                        <div class="icon-circle mb-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4>Hotline</h4>
+                        <p>Gọi ngay: 1800-xxxx</p>
+                        <p class="small">Thời gian: 8:00 - 22:00</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="support-card text-center">
+                        <div class="icon-circle mb-3">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email hỗ trợ</h4>
+                        <p>support@megastore.vn</p>
+                        <p class="small">Phản hồi trong vòng 24h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shopping Guide -->
+        <section class="support-section mb-5" id="shopping-guide">
+            <div class="section-header">
+                <h2><i class="fas fa-shopping-cart"></i>Hướng dẫn mua hàng</h2>
+                <p class="text-muted">Quy trình mua sắm đơn giản, nhanh chóng và an toàn</p>
+            </div>
+            <div class="shopping-steps">
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <h5>Tìm sản phẩm</h5>
+                            <p>Sử dụng thanh tìm kiếm hoặc duyệt qua danh mục</p>
+                            <ul class="step-details">
+                                <li>Tìm theo tên sản phẩm</li>
+                                <li>Lọc theo danh mục</li>
+                                <li>Sắp xếp theo giá</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <h5>Thêm vào giỏ hàng</h5>
+                            <p>Chọn số lượng và thêm vào giỏ hàng</p>
+                            <ul class="step-details">
+                                <li>Kiểm tra tồn kho</li>
+                                <li>Chọn phiên bản</li>
+                                <li>Xem giỏ hàng</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <h5>Thanh toán</h5>
+                            <p>Chọn phương thức thanh toán</p>
+                            <ul class="step-details">
+                                <li>Thẻ tín dụng</li>
+                                <li>Chuyển khoản</li>
+                                <li>Thanh toán khi nhận hàng</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <h5>Nhận hàng</h5>
+                            <p>Theo dõi đơn hàng trực tuyến</p>
+                            <ul class="step-details">
+                                <li>Kiểm tra trạng thái</li>
+                                <li>Theo dõi vận chuyển</li>
+                                <li>Xác nhận nhận hàng</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Return Policy -->
+        <section class="support-section mb-5" id="return-policy">
+            <div class="section-header">
+                <h2><i class="fas fa-exchange-alt"></i>Chính sách đổi trả</h2>
+                <p class="text-muted">Cam kết hoàn tiền và đổi trả dễ dàng</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="policy-card">
+                        <h5 class="card-title">Điều kiện đổi trả</h5>
+                        <ul class="policy-list">
+                            <li><i class="fas fa-check"></i>Sản phẩm còn nguyên tem mác</li>
+                            <li><i class="fas fa-check"></i>Thời gian đổi trả trong vòng 7 ngày</li>
+                            <li><i class="fas fa-check"></i>Sản phẩm chưa qua sử dụng</li>
+                            <li><i class="fas fa-check"></i>Có hóa đơn mua hàng</li>
+                            <li><i class="fas fa-check"></i>Phụ kiện còn đầy đủ</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="policy-card">
+                        <h5 class="card-title">Quy trình đổi trả</h5>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-badge">1</div>
+                                <div class="timeline-content">
+                                    <h6>Liên hệ CSKH</h6>
+                                    <p>Thông báo yêu cầu đổi trả</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-badge">2</div>
+                                <div class="timeline-content">
+                                    <h6>Điền form đổi trả</h6>
+                                    <p>Cung cấp thông tin chi tiết</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-badge">3</div>
+                                <div class="timeline-content">
+                                    <h6>Đóng gói sản phẩm</h6>
+                                    <p>Đảm bảo đóng gói cẩn thận</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-badge">4</div>
+                                <div class="timeline-content">
+                                    <h6>Gửi trả sản phẩm</h6>
+                                    <p>Sử dụng dịch vụ vận chuyển</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Policy -->
+        <section class="support-section mb-5" id="privacy-policy">
+            <div class="section-header">
+                <h2><i class="fas fa-shield-alt"></i>Chính sách bảo mật</h2>
+                <p class="text-muted">Bảo vệ thông tin khách hàng là ưu tiên hàng đầu</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="privacy-card">
+                        <div class="privacy-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h5>Thông tin cá nhân</h5>
+                        <ul>
+                            <li>Họ tên</li>
+                            <li>Địa chỉ</li>
+                            <li>Số điện thoại</li>
+                            <li>Email</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="privacy-card">
+                        <div class="privacy-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h5>Bảo mật thanh toán</h5>
+                        <ul>
+                            <li>Mã hóa SSL 256-bit</li>
+                            <li>Xác thực 2 lớp</li>
+                            <li>Bảo mật thẻ</li>
+                            <li>Theo dõi giao dịch</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="privacy-card">
+                        <div class="privacy-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h5>Cam kết bảo mật</h5>
+                        <ul>
+                            <li>Không chia sẻ thông tin</li>
+                            <li>Bảo vệ dữ liệu</li>
+                            <li>Tuân thủ pháp luật</li>
+                            <li>Cập nhật thường xuyên</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms of Use -->
+        <section class="support-section" id="terms">
+            <div class="section-header">
+                <h2><i class="fas fa-file-contract"></i>Điều khoản sử dụng</h2>
+                <p class="text-muted">Quy định và điều khoản khi sử dụng dịch vụ</p>
+            </div>
+            <div class="terms-grid">
+                <div class="terms-card">
+                    <div class="terms-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h5>Quy định chung</h5>
+                    <p>Tuân thủ pháp luật Việt Nam và các quy định về thương mại điện tử</p>
+                </div>
+                <div class="terms-card">
+                    <div class="terms-icon">
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                    <h5>Tài khoản</h5>
+                    <p>Bảo mật thông tin đăng nhập và chịu trách nhiệm về hoạt động của tài khoản</p>
+                </div>
+                <div class="terms-card">
+                    <div class="terms-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h5>Mua hàng</h5>
+                    <p>Cung cấp thông tin chính xác và thanh toán đầy đủ cho đơn hàng</p>
+                </div>
+                <div class="terms-card">
+                    <div class="terms-icon">
+                        <i class="fas fa-copyright"></i>
+                    </div>
+                    <h5>Bản quyền</h5>
+                    <p>Tôn trọng quyền sở hữu trí tuệ và không sao chép trái phép</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Về MegaStore</h3>
+                    <p>MegaStore là nền tảng thương mại điện tử hàng đầu Việt Nam, cung cấp đa dạng sản phẩm chất lượng với giá cả cạnh tranh.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Hỗ trợ khách hàng</h3>
+                    <ul>
+                        <li><a href="/support">Trung tâm trợ giúp</a></li>
+                        <li><a href="/support">Hướng dẫn mua hàng</a></li>
+                        <li><a href="/support">Chính sách đổi trả</a></li>
+                        <li><a href="/support">Chính sách bảo mật</a></li>
+                        <li><a href="/support">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Về chúng tôi</h3>
+                    <ul>
+                        <li><a href="/about">Giới thiệu</a></li>
+                        <li><a href="/about">Tuyển dụng</a></li>
+                        <li><a href="/about">Điều khoản</a></li>
+                        <li><a href="/about">Chính sách bảo mật</a></li>
+                        <li><a href="/about">Chương trình khuyến mãi</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Đăng ký nhận tin</h3>
+                    <p>Đăng ký để nhận thông tin về sản phẩm mới và chương trình khuyến mãi</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn">
+                        <button type="submit">Đăng ký</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 MegaStore VN. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Bootstrap components
+            var triggerTabList = [].slice.call(document.querySelectorAll('.list-group-item'))
+            triggerTabList.forEach(function(triggerEl) {
+                triggerEl.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Remove active class from all items
+                    triggerTabList.forEach(item => item.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
