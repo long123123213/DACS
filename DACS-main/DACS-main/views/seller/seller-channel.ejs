@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng Quan - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+
+    <div class="seller-layout">
+        <main class="main-content">
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Tổng Quan</h2>
+                    <div class="section-actions">
+                        <select class="filter-select">
+                            <option value="today">Hôm nay</option>
+                            <option value="7days">7 ngày qua</option>
+                            <option value="30days">30 ngày qua</option>
+                            <option value="90days">90 ngày qua</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Tổng đơn hàng</h3>
+                            <div class="stat-value">256</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                15.2% so với tháng trước
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Doanh thu</h3>
+                            <div class="stat-value">125,000,000 ₫</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                8.5% so với tháng trước
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Sản phẩm</h3>
+                            <div class="stat-value">1,250</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                5.3% so với tháng trước
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Đánh giá</h3>
+                            <div class="stat-value">4.8/5.0</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                0.2 điểm so với tháng trước
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="section-header" style="margin-top: 2rem;">
+                    <h3>Hoạt động gần đây</h3>
+                    <button class="btn-outline">
+                        <i class="fas fa-list"></i> Xem tất cả
+                    </button>
+                </div>
+
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon success">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>Đơn hàng mới #ORD-2024001</p>
+                            <span class="activity-time">5 phút trước</span>
+                        </div>
+                        <div class="activity-amount">2,500,000 ₫</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon primary">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>Đánh giá mới cho sản phẩm iPhone 14 Pro Max</p>
+                            <span class="activity-time">30 phút trước</span>
+                        </div>
+                        <div class="activity-rating">5.0</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon warning">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>Sản phẩm AirPods Pro đã hết hàng</p>
+                            <span class="activity-time">1 giờ trước</span>
+                        </div>
+                        <div class="activity-stock">0</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon info">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>Tin nhắn mới từ khách hàng</p>
+                            <span class="activity-time">2 giờ trước</span>
+                        </div>
+                        <div class="activity-badge">1</div>
+                    </div>
+                </div>
+
+                <!-- Top Products -->
+                <div class="section-header" style="margin-top: 2rem;">
+                    <h3>Sản phẩm bán chạy</h3>
+                    <button class="btn-outline">
+                        <i class="fas fa-list"></i> Xem tất cả
+                    </button>
+                </div>
+
+                <div class="top-products">
+                    <div class="product-card">
+                        <img src="/images/product-placeholder.jpg" alt="Product">
+                        <div class="product-info">
+                            <h4>iPhone 14 Pro Max</h4>
+                            <p>Đã bán: 150</p>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/images/product-placeholder.jpg" alt="Product">
+                        <div class="product-info">
+                            <h4>AirPods Pro</h4>
+                            <p>Đã bán: 120</p>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/images/product-placeholder.jpg" alt="Product">
+                        <div class="product-info">
+                            <h4>MacBook Pro M2</h4>
+                            <p>Đã bán: 80</p>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Handle period selection
+        document.querySelector('.filter-select').addEventListener('change', function(e) {
+            // TODO: Update data based on selected period
+            console.log('Selected period:', e.target.value);
+        });
+    </script>
+</body>
+</html>

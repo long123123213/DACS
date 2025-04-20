@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Đơn Hàng - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+
+    <div class="seller-layout">
+        <main class="main-content">
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Quản Lý Đơn Hàng</h2>
+                    <div class="section-actions">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Tìm kiếm đơn hàng...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <select class="filter-select">
+                            <option value="all">Tất cả trạng thái</option>
+                            <option value="pending">Chờ xác nhận</option>
+                            <option value="processing">Đang xử lý</option>
+                            <option value="shipping">Đang giao</option>
+                            <option value="completed">Đã giao</option>
+                            <option value="cancelled">Đã hủy</option>
+                        </select>
+                        <button class="btn-outline">
+                            <i class="fas fa-filter"></i> Lọc
+                        </button>
+                    </div>
+                </div>
+
+                <div class="order-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã đơn hàng</th>
+                                <th>Khách hàng</th>
+                                <th>Ngày đặt</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                                <th>Thanh toán</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-2024001</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <span class="customer-name">Nguyễn Văn A</span>
+                                        <span class="customer-phone">0987654321</span>
+                                    </div>
+                                </td>
+                                <td>15/03/2024</td>
+                                <td>2,500,000 VNĐ</td>
+                                <td>
+                                    <span class="status-badge pending">Chờ xác nhận</span>
+                                </td>
+                                <td>
+                                    <span class="payment-status paid">Đã thanh toán</span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon view" title="Xem chi tiết">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon edit" title="Cập nhật">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon print" title="In đơn hàng">
+                                            <i class="fas fa-print"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Thêm các đơn hàng khác -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="btn-page" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-page active">1</button>
+                    <button class="btn-page">2</button>
+                    <button class="btn-page">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="btn-page">10</button>
+                    <button class="btn-page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Order Detail Modal -->
+            <div class="modal" id="orderDetailModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Chi Tiết Đơn Hàng #ORD-2024001</h3>
+                        <button class="btn-close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="order-info-grid">
+                            <div class="info-group">
+                                <h4>Thông Tin Khách Hàng</h4>
+                                <p><strong>Tên:</strong> Nguyễn Văn A</p>
+                                <p><strong>SĐT:</strong> 0987654321</p>
+                                <p><strong>Email:</strong> nguyenvana@email.com</p>
+                                <p><strong>Địa chỉ:</strong> 123 Đường ABC, Quận XYZ, TP.HCM</p>
+                            </div>
+                            <div class="info-group">
+                                <h4>Thông Tin Đơn Hàng</h4>
+                                <p><strong>Ngày đặt:</strong> 15/03/2024</p>
+                                <p><strong>Phương thức thanh toán:</strong> Chuyển khoản</p>
+                                <p><strong>Trạng thái thanh toán:</strong> Đã thanh toán</p>
+                                <p><strong>Ghi chú:</strong> Giao hàng giờ hành chính</p>
+                            </div>
+                        </div>
+                        <div class="order-items">
+                            <h4>Sản Phẩm</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="product-cell">
+                                                <img src="/images/product-placeholder.jpg" alt="Product">
+                                                <div>
+                                                    <p class="product-name">iPhone 14 Pro Max</p>
+                                                    <p class="product-variant">Màu: Đen, Dung lượng: 256GB</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>25,000,000 VNĐ</td>
+                                        <td>1</td>
+                                        <td>25,000,000 VNĐ</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3">Tạm tính</td>
+                                        <td>25,000,000 VNĐ</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Phí vận chuyển</td>
+                                        <td>50,000 VNĐ</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><strong>Tổng cộng</strong></td>
+                                        <td><strong>25,050,000 VNĐ</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="order-status-update">
+                            <select class="status-select">
+                                <option value="pending">Chờ xác nhận</option>
+                                <option value="processing">Đang xử lý</option>
+                                <option value="shipping">Đang giao</option>
+                                <option value="completed">Đã giao</option>
+                                <option value="cancelled">Đã hủy</option>
+                            </select>
+                            <button class="btn-primary">
+                                <i class="fas fa-save"></i> Cập nhật trạng thái
+                            </button>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="btn-outline">
+                                <i class="fas fa-print"></i> In đơn hàng
+                            </button>
+                            <button class="btn-outline">
+                                <i class="fas fa-download"></i> Xuất PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

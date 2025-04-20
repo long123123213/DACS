@@ -20,23 +20,39 @@
         <div class="top-header">
             <div class="container">
                 <div class="left-section">
-                    <a href="/seller" class="seller-channel">Kênh người bán</a>
+                    <a href="#" class="notification-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Thông báo</span>
+                    </a>
+                    <a href="#" class="help-link">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Trợ giúp</span>
+                    </a>
                 </div>
                 <div class="right-section">
-                    <div class="header-links">
-                        <a href="#"><i class="fas fa-bell"></i> Thông báo</a>
-                        <a href="#">Trợ giúp</a>
-                    </div>
-                    <div class="user-section">
-                        <% if (hoTen) { %>
-                            <div class="welcome-message">
-                                <p>Xin chào, <%= hoTen %>!</p>
-                                <a href="/logout">Đăng xuất</a>
-                            </div>
-                        <% } else { %>
-                            <a href="/login">Đăng nhập</a>
-                        <% } %>
-                    </div>
+                    <% if (hoTen) { %>
+                        <div class="user-menu">
+                            <a href="/profile" class="user-link">
+                                <i class="fas fa-user-circle"></i>
+                                <span><%= hoTen %></span>
+                            </a>
+                            <a href="/logout" class="logout-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Đăng xuất</span>
+                            </a>
+                        </div>
+                    <% } else { %>
+                        <div class="auth-buttons">
+                            <a href="/login" class="login-link">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Đăng nhập</span>
+                            </a>
+                            <a href="/register" class="register-link">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Đăng ký</span>
+                            </a>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -49,8 +65,12 @@
                     <input type="text" placeholder="Tìm kiếm sản phẩm...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
-                <div class="cart">
-                    <a href="cart" class="cart-icon">
+                <div class="header-actions">
+                    <a href="/seller" class="seller-link">
+                        <i class="fas fa-store"></i>
+                        <span>Người bán hàng</span>
+                    </a>
+                    <a href="/cart" class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
                     </a>

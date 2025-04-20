@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Tài Chính - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+
+    <div class="seller-layout">
+        <main class="main-content">
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Quản Lý Tài Chính</h2>
+                    <div class="section-actions">
+                        <select class="filter-select">
+                            <option value="7days">7 ngày qua</option>
+                            <option value="30days">30 ngày qua</option>
+                            <option value="90days">90 ngày qua</option>
+                            <option value="custom">Tùy chỉnh</option>
+                        </select>
+                        <button class="btn-primary">
+                            <i class="fas fa-download"></i> Xuất báo cáo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Financial Overview -->
+                <div class="quick-stats">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Doanh thu</h3>
+                            <div class="stat-value">125,000,000 ₫</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                15.2% so với tháng trước
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Đơn hàng</h3>
+                            <div class="stat-value">256</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                8.5% so với tháng trước
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Chi phí</h3>
+                            <div class="stat-value">15,000,000 ₫</div>
+                            <div class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                5.3% so với tháng trước
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Lợi nhuận</h3>
+                            <div class="stat-value">110,000,000 ₫</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                12.8% so với tháng trước
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revenue Chart -->
+                <div class="chart-section">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Biểu Đồ Doanh Thu</h3>
+                            <div class="chart-actions">
+                                <button class="btn-outline active">Ngày</button>
+                                <button class="btn-outline">Tuần</button>
+                                <button class="btn-outline">Tháng</button>
+                            </div>
+                        </div>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Transaction History -->
+                <div class="section-header" style="margin-top: 2rem;">
+                    <h3>Lịch Sử Giao Dịch</h3>
+                    <div class="section-actions">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Tìm kiếm giao dịch...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <select class="filter-select">
+                            <option value="all">Tất cả giao dịch</option>
+                            <option value="income">Thu</option>
+                            <option value="expense">Chi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="transaction-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã giao dịch</th>
+                                <th>Ngày</th>
+                                <th>Mô tả</th>
+                                <th>Loại</th>
+                                <th>Phương thức</th>
+                                <th>Số tiền</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#TRX-2024001</td>
+                                <td>15/03/2024</td>
+                                <td>Đơn hàng #ORD-2024001</td>
+                                <td>
+                                    <span class="transaction-type income">Thu</span>
+                                </td>
+                                <td>Chuyển khoản</td>
+                                <td class="amount positive">+2,500,000 ₫</td>
+                                <td>
+                                    <span class="status-badge completed">Hoàn thành</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#TRX-2024002</td>
+                                <td>15/03/2024</td>
+                                <td>Phí vận chuyển</td>
+                                <td>
+                                    <span class="transaction-type expense">Chi</span>
+                                </td>
+                                <td>Tự động trừ</td>
+                                <td class="amount negative">-50,000 ₫</td>
+                                <td>
+                                    <span class="status-badge completed">Hoàn thành</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="btn-page" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-page active">1</button>
+                    <button class="btn-page">2</button>
+                    <button class="btn-page">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="btn-page">10</button>
+                    <button class="btn-page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Revenue Chart
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['01/03', '02/03', '03/03', '04/03', '05/03', '06/03', '07/03'],
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: [12500000, 15000000, 10000000, 20000000, 18000000, 22000000, 25000000],
+                    borderColor: '#4f46e5',
+                    backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString('vi-VN') + ' ₫';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

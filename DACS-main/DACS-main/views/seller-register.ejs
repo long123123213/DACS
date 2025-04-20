@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="form-group">
-<label>Địa chỉ lấy hàng <span class="required">*</span></label>
+                        <label>Địa chỉ lấy hàng <span class="required">*</span></label>
                         <button type="button" class="btn-add-address">
                             <i class="fas fa-plus"></i> Thêm địa chỉ mới
                         </button>
@@ -128,3 +128,105 @@
                         <input type="checkbox" id="standard" checked>
                         <label for="standard">
                             <div class="option-info">
+                                <h4>Giao hàng tiết kiệm</h4>
+                                <p>Giao hàng từ 2-3 ngày với chi phí thấp</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary">Quay lại</button>
+                    <button type="button" class="btn-primary">Tiếp theo</button>
+                </div>
+            </section>
+
+            <!-- Step 3: Thông tin thuế -->
+            <section class="form-section" id="tax-info">
+                <h2>Thông tin thuế</h2>
+                <p class="section-desc">Cung cấp thông tin thuế của doanh nghiệp</p>
+
+                <form>
+                    <div class="form-group">
+                        <label>Mã số thuế <span class="required">*</span></label>
+                        <input type="text" name="taxCode" placeholder="Nhập mã số thuế">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tên công ty <span class="required">*</span></label>
+                        <input type="text" name="companyName" placeholder="Nhập tên công ty">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Địa chỉ đăng ký kinh doanh <span class="required">*</span></label>
+                        <textarea name="businessAddress" placeholder="Nhập địa chỉ đăng ký kinh doanh"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary">Quay lại</button>
+                        <button type="button" class="btn-primary">Tiếp theo</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Step 4: Thông tin định danh -->
+            <section class="form-section" id="identity-info">
+                <h2>Thông tin định danh</h2>
+                <p class="section-desc">Xác thực danh tính của người đại diện shop</p>
+
+                <form>
+                    <div class="form-group">
+                        <label>CMND/CCCD <span class="required">*</span></label>
+                        <input type="text" name="idNumber" placeholder="Nhập số CMND/CCCD">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ảnh mặt trước CMND/CCCD <span class="required">*</span></label>
+                            <div class="id-upload">
+                                <i class="fas fa-id-card"></i>
+                                <p>Tải lên ảnh mặt trước</p>
+                                <input type="file" accept="image/*">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ảnh mặt sau CMND/CCCD <span class="required">*</span></label>
+                            <div class="id-upload">
+                                <i class="fas fa-id-card"></i>
+                                <p>Tải lên ảnh mặt sau</p>
+                                <input type="file" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary">Quay lại</button>
+                        <button type="button" class="btn-primary">Tiếp theo</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Step 5: Hoàn tất -->
+            <section class="form-section" id="completion">
+                <div class="completion-content">
+                    <i class="fas fa-check-circle success-icon"></i>
+                    <h2>Đăng ký thành công!</h2>
+                    <p>Chúc mừng bạn đã hoàn tất quá trình đăng ký kênh người bán.</p>
+                    <p>Chúng tôi sẽ xem xét hồ sơ của bạn và phản hồi trong vòng 24h.</p>
+                    <button type="button" class="btn-primary">
+                        Truy cập Kênh người bán
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="registration-footer">
+        <div class="container">
+            <p>&copy; 2024 MegaStore VN. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+</body>
+</html> 

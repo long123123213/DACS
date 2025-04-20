@@ -25,158 +25,16 @@
     <section class="featured-categories">
         <div class="container">
             <div class="categories-grid">
-                <!-- Thiết Bị Điện Tử -->
+              
+                <% items.forEach((item,index)=>{  %>
                 <div class="category-card">
-                    <h3>Thiết Bị Điện Tử</h3>
+                    <h3><%= item.TenDM %></h3>
                     <div class="category-items">
-                        <div class="category-item">
-                            <img src="/images/electronics/monitor.jpg" alt="Màn Hình">
-                            <p>Màn Hình</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/electronics/keyboard.jpg" alt="Bàn Phím">
-                            <p>Bàn Phím</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/electronics/mouse.jpg" alt="Chuột Gaming">
-                            <p>Chuột Gaming</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/electronics/chair.jpg" alt="Ghế Gaming">
-                            <p>Ghế Gaming</p>
-                        </div>
+                        <img src="/images/electronics/chair.jpg" alt="Ghế Gaming">
                     </div>
                     <a href="#" class="see-more">See more</a>
                 </div>
-
-                <!-- Điện Thoại Và Phụ Kiện -->
-                <div class="category-card">
-                    <h3>Điện Thoại Và Phụ Kiện</h3>
-                    <div class="category-items">
-                        <div class="category-item">
-                            <img src="/images/phones/iphone.jpg" alt="Iphone">
-                            <p>Iphone</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/phones/charger.jpg" alt="Sạc Điện Thoại">
-                            <p>Sạc Điện Thoại</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/phones/case.jpg" alt="Ốp Điện Thoại">
-                            <p>Ốp Điện Thoại</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/phones/wireless-charger.jpg" alt="Sạc Không Dây">
-                            <p>Sạc Không Dây</p>
-                        </div>
-                    </div>
-                    <a href="#" class="see-more">See more</a>
-                </div>
-
-                <!-- Đồ Gia Dụng -->
-                <div class="category-card">
-                    <h3>Đồ Gia Dụng</h3>
-                    <div class="category-items">
-                        <div class="category-item">
-                            <img src="/images/appliances/appliances.jpg" alt="Đồ Gia Dụng">
-                        </div>
-                    </div>
-                    <a href="#" class="see-more">See more</a>
-                </div>
-
-                <!-- Thời Trang -->
-                <div class="category-card">
-                    <h3>Thời Trang</h3>
-                    <div class="category-items">
-                        <div class="category-item">
-                            <img src="/images/fashion/fashion.jpg" alt="Thời Trang">
-                        </div>
-                    </div>
-                    <a href="#" class="see-more">See more</a>
-                </div>
-
-                <!-- Làm Đẹp -->
-                <div class="category-card">
-                    <h3>Làm Đẹp</h3>
-                    <div class="category-items">
-                        <div class="category-item">
-                            <img src="/images/beauty/eyeliner.jpg" alt="Kẻ mắt">
-                            <p>Kẻ mắt</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/beauty/foundation.jpg" alt="Kem Nền">
-                            <p>Kem Nền</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/beauty/powder.jpg" alt="Phấn Má">
-                            <p>Phấn Má</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/beauty/lipstick.jpg" alt="Son Môi">
-                            <p>Son Môi</p>
-                        </div>
-                    </div>
-                    <a href="#" class="see-more">See more</a>
-                </div>
-
-                <!-- Phụ Kiện Và Trang Sức -->
-                <div class="category-card">
-                    <h3>Phụ Kiện Và Trang Sức</h3>
-                    <div class="category-items">
-                        <div class="category-item">
-                            <img src="/images/accessories/earrings.jpg" alt="Bông Tai">
-                            <p>Bông Tai</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/accessories/necklace.jpg" alt="Dây Chuyền">
-                            <p>Dây Chuyền</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/accessories/bracelet.jpg" alt="Lắc Tay">
-                            <p>Lắc Tay</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/accessories/ring.jpg" alt="Nhẫn">
-                            <p>Nhẫn</p>
-                        </div>
-                    </div>
-                    <a href="#" class="see-more">See more</a>
-                </div>
-
-                <!-- Giày Dép -->
-                <div class="category-card">
-                    <h3>Giày Dép</h3>
-                    <div class="category-items">
-                        <div class="category-item">
-                            <img src="/images/shoes/leather.jpg" alt="Giày Tây">
-                            <p>Giày Tây</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/shoes/nike.jpg" alt="Giày Nike">
-                            <p>Giày Nike</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/shoes/adidas.jpg" alt="Dép Adidas">
-                            <p>Dép Adidas</p>
-                        </div>
-                        <div class="category-item">
-                            <img src="/images/shoes/sandals.jpg" alt="Dép Bánh Mì">
-                            <p>Dép Bánh Mì</p>
-                        </div>
-                    </div>
-                    <a href="#" class="see-more">See more</a>
-                </div>
-
-                <!-- Sức Khỏe -->
-                <div class="category-card">
-                    <h3>Sức Khỏe</h3>
-                    <div class="category-items">
-                        <div class="category-item">
-                            <img src="/images/health/health.jpg" alt="Sức Khỏe">
-                        </div>
-                    </div>
-                    <a href="#" class="see-more">See more</a>
-                </div>
+             <% }) %>
             </div>
         </div>
     </section>
