@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kênh Người Bán - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+
+         <!-- Product Management Section -->
+         <section id="products" class="content-section" style="display: '<%= activeTab === 'products' ? 'block' : 'none' %>'">
+            <div class="section-header">
+                <h2>Đăng Sản Phẩm Mới</h2>
+            </div>
+            
+            <form role="form" action="/seller/save" method="POST" enctype="multipart/form-data">
+                <div class="product-form">
+                    <div class="form-group">
+                        <label>Tên Sản Phẩm</label>
+                        <input name="TenSP" type="text" placeholder="Nhập tên sản phẩm" value="<%= item.TenSP %>">
+                    </div>
+                     
+                    <select name="MaDM" id="category" required>
+                        <option value="novalue">Chọn danh mục</option>
+                        <% dsDanhMuc.forEach((itemDanhMuc,index)=>{ %>
+                            <option value="<%= itemDanhMuc._id %>" 
+                                <%= item.MaDM && item.MaDM._id.toString() === itemDanhMuc._id.toString() ? 'selected="selected"' : '' %>>
+                                <%= itemDanhMuc.TenDM %>
+                            </option>
+                            
+                       <% }) %>
+                          
+                        
+                      </select>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Giá Sản Phẩm (VNĐ)</label>
+                            <input name="GiaGoc" type="number" placeholder="Nhập giá sản phẩm" value="<%= item.GiaGoc %>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hình Ảnh Sản Phẩm</label>
+                        <div class="image-upload">
+                            <label for="file-input">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 30px; cursor: pointer;"></i>
+                                <p>Kéo thả hoặc click để tải ảnh lên</p>
+                            </label>
+                            <input id="file-input" type="file" name="HinhAnh" accept="image/*" style="display: none;" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Số Lượng</label>
+                        <input name="SoLuong" type="number" placeholder="Nhập số lượng" value="<%= item.SoLuong %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mô Tả Sản Phẩm</label>
+                        <textarea name="MoTa" placeholder="Nhập mô tả chi tiết sản phẩm" ><%= item.MoTa %></textarea>
+                    </div>
+                    <input class="form-control" name="id" value="<%= item.id %>" type="hidden" >
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Lưu sản phẩm
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Product List -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2>Danh Sách Sản Phẩm</h2>
+                    <div class="section-actions">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm..." class="search-input">
+                        <select class="filter-select">
+                            <option>Tất cả danh mục</option>
+                            <option>Điện tử</option>
+                            <option>Thời trang</option>
+                            <option>Gia dụng</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hình Ảnh</th>
+                                <th>STT</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Danh Mục</th>
+                                <th>Giá (VNĐ)</th>
+                                <th>Mô Tả</th>
+                                <th>Số Lượng</th>
+                                <th>Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%   dsSanPham.forEach((item,index)=> {  %>
+                            <tr>
+                                <td>
+                                    <% if (item.HinhAnh) { %>
+                                    <img src="<%= item.HinhAnh %>" alt="Hình sản phẩm" class="product-thumb" style="width: 100px; height: auto;">
+                                    <% } else { %>
+                                    <span>Chưa có ảnh</span>
+                                    <% } %>
+                                </td>
+                                <td><%= index+1 %></td>
+                                <td><%= item.TenSP %></td>
+                                <td><%= item.MaDM ? item.MaDM.TenDM : 'Không có danh mục' %></td>
+                                <td><%= item.GiaGoc %></td>
+                                <td><%= item.MoTa %></td>
+                                <td><%= item.SoLuong %></td>
+                                <td class="actions">
+                                    <a href="/seller/edit/<%= item._id %>" class="btn-icon edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="/seller/delete/<%= item._id %>" class="btn-icon delete"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+</body>
+</html> 

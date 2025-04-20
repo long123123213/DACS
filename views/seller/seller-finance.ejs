@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kênh Người Bán - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+
+  
+  <!-- Finance Section -->
+  <section id="finance" class="content-section" style="display: '<%= activeTab === 'finance' ? 'block' : 'none' %>'">
+    <div class="section-header">
+        <h2>Tài Chính</h2>
+        <button class="btn-primary">
+            <i class="fas fa-download"></i> Xuất báo cáo
+        </button>
+    </div>
+
+    <div class="finance-overview">
+        <div class="stat-card">
+            <div class="stat-info">
+                <h3>Số dư khả dụng</h3>
+                <p class="stat-value">12.5M VNĐ</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <h3>Đang chờ giải ngân</h3>
+                <p class="stat-value">5.2M VNĐ</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <h3>Doanh thu tháng này</h3>
+                <p class="stat-value">45.5M VNĐ</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="finance-actions">
+        <button class="btn-primary">
+            <i class="fas fa-wallet"></i> Rút tiền
+        </button>
+        <button class="btn-secondary">
+            <i class="fas fa-history"></i> Lịch sử giao dịch
+        </button>
+    </div>
+
+    <div class="transaction-history">
+        <h3>Lịch sử giao dịch gần đây</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã giao dịch</th>
+                    <th>Ngày</th>
+                    <th>Loại</th>
+                    <th>Số tiền</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#TRX001</td>
+                    <td>20/03/2024</td>
+                    <td>Rút tiền</td>
+                    <td>-5,000,000 VNĐ</td>
+                    <td><span class="status-badge success">Thành công</span></td>
+                </tr>
+                <!-- More transaction rows... -->
+            </tbody>
+        </table>
+    </div>
+</section>

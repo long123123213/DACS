@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kênh Người Bán - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+    
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Overview -->
+            <section class="dashboard-overview" style="display: '<%= activeTab === 'dashboard' ? 'block' : 'none' %>'">
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #4f46e5;">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Đơn hàng mới</h3>
+                            <p class="stat-value">25</p>
+                            <p class="stat-change positive">+12% so với hôm qua</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #10b981;">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Doanh thu hôm nay</h3>
+                            <p class="stat-value">8.5M VNĐ</p>
+                            <p class="stat-change positive">+8% so với hôm qua</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #f59e0b;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Khách truy cập</h3>
+                            <p class="stat-value">1,234</p>
+                            <p class="stat-change positive">+15% so với hôm qua</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: #ef4444;">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Đánh giá mới</h3>
+                            <p class="stat-value">4.8</p>
+                            <p class="stat-change">12 đánh giá mới</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <div class="section-header">
+                        <h2>Hoạt Động Gần Đây</h2>
+                        <a href="#" class="view-all">Xem tất cả</a>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p>Đơn hàng mới #12345</p>
+                                <span class="time">5 phút trước</span>
+                            </div>
+                            <div class="activity-value">
+                                +500,000 VNĐ
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p>Đánh giá mới cho sản phẩm "Điện thoại XYZ"</p>
+                                <span class="time">30 phút trước</span>
+                            </div>
+                            <div class="activity-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Chart -->
+                <div class="sales-chart">
+                    <div class="section-header">
+                        <h2>Biểu Đồ Doanh Số</h2>
+                        <div class="chart-filters">
+                            <button class="active">7 ngày</button>
+                            <button>30 ngày</button>
+                            <button>3 tháng</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <!-- Placeholder for chart -->
+                        <div style="height: 300px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <p>Biểu đồ doanh số sẽ được hiển thị tại đây</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+           
+
+                                      
+           
+          
+
+           
+
+            
+        </main>
+    </div>
+</body>
+</html> 

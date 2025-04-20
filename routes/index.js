@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var categorySchema = require('./schemas/danhMuc');
 /* GET home page. */
 
 router.use('/products',require('./product'));
@@ -15,7 +15,12 @@ router.use('/about',require('./about'));
 router.use('/contact',require('./contact'));
 router.use('/support',require('./support'));
 router.get('/', (req, res) => {
-    res.render('index');
+    categorySchema.find().then(items=>{
+        res.render('index',{
+            items
+        });
+    })
+    
 });
 router.use('/logout',require('./logout'));
 module.exports = router;

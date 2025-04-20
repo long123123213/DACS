@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kênh Người Bán - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+<!-- Settings Section -->
+<section id="settings" class="content-section" style="display: '<%= activeTab === 'settings' ? 'block' : 'none' %>'">
+    <div class="section-header">
+        <h2>Thiết Lập Shop</h2>
+    </div>
+
+    <div class="settings-grid">
+        <div class="settings-card">
+            <h3><i class="fas fa-store"></i> Thông tin cửa hàng</h3>
+            <form class="settings-form">
+                <div class="form-group">
+                    <label>Tên cửa hàng</label>
+                    <input type="text" value="MegaStore VN">
+                </div>
+                <div class="form-group">
+                    <label>Logo cửa hàng</label>
+                    <div class="image-upload">
+                        <img src="/images/store-logo.jpg" alt="Store Logo">
+                        <button type="button" class="btn-secondary">Thay đổi</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea rows="3">Cửa hàng chuyên cung cấp các sản phẩm chất lượng cao</textarea>
+                </div>
+            </form>
+        </div>
+
+        <div class="settings-card">
+            <h3><i class="fas fa-truck"></i> Vận chuyển</h3>
+            <div class="shipping-settings">
+                <div class="setting-item">
+                    <span>Giao hàng nhanh</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>Giao hàng tiết kiệm</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h3><i class="fas fa-money-bill"></i> Thanh toán</h3>
+            <div class="payment-settings">
+                <div class="setting-item">
+                    <span>Thanh toán khi nhận hàng (COD)</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>Thanh toán online</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button class="btn-secondary">
+                    <i class="fas fa-plus"></i> Thêm phương thức thanh toán
+                </button>
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h3><i class="fas fa-bell"></i> Thông báo</h3>
+            <div class="notification-settings">
+                <div class="setting-item">
+                    <span>Thông báo đơn hàng mới</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>Thông báo chat khách hàng</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>Thông báo email</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-actions">
+        <button class="btn-primary">Lưu thay đổi</button>
+        <button class="btn-secondary">Hủy</button>
+    </div>
+</section>

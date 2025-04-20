@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kênh Người Bán - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+ 
+ <!-- Analytics Section -->
+ <section id="analytics" class="content-section" style="display: '<%= activeTab === 'analytics' ? 'block' : 'none' %>'">
+    <div class="section-header">
+        <h2>Phân Tích Bán Hàng</h2>
+        <div class="date-range-picker">
+            <button class="btn-secondary active">7 ngày</button>
+            <button class="btn-secondary">30 ngày</button>
+            <button class="btn-secondary">3 tháng</button>
+            <button class="btn-secondary">Tùy chỉnh</button>
+        </div>
+    </div>
+
+    <div class="analytics-overview">
+        <div class="stat-card">
+            <div class="stat-info">
+                <h3>Tổng doanh thu</h3>
+                <p class="stat-value">45.5M VNĐ</p>
+                <p class="stat-change positive">+15% so với kỳ trước</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <h3>Số đơn hàng</h3>
+                <p class="stat-value">234</p>
+                <p class="stat-change positive">+8% so với kỳ trước</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <h3>Giá trị trung bình/đơn</h3>
+                <p class="stat-value">195,000 VNĐ</p>
+                <p class="stat-change positive">+5% so với kỳ trước</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="analytics-charts">
+        <div class="chart-container">
+            <h3>Doanh thu theo thời gian</h3>
+            <div class="chart-placeholder">
+                [Biểu đồ doanh thu]
+            </div>
+        </div>
+        <div class="chart-container">
+            <h3>Top sản phẩm bán chạy</h3>
+            <div class="chart-placeholder">
+                [Biểu đồ top sản phẩm]
+            </div>
+        </div>
+    </div>
+
+    <div class="analytics-details">
+        <div class="detail-card">
+            <h3>Phân tích khách hàng</h3>
+            <div class="chart-placeholder">
+                [Biểu đồ phân tích khách hàng]
+            </div>
+        </div>
+        <div class="detail-card">
+            <h3>Kênh bán hàng</h3>
+            <div class="chart-placeholder">
+                [Biểu đồ kênh bán hàng]
+            </div>
+        </div>
+    </div>
+</section>
