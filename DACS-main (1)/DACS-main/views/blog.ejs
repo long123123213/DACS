@@ -1,0 +1,318 @@
+
+
+<!-- Add blog CSS -->
+<link rel="stylesheet" href="/css/blog.css">
+
+<main>
+    <!-- Blog Hero Section -->
+    <section class="bg-primary text-white py-5 position-relative overflow-hidden">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6 position-relative z-1">
+                    <span class="badge bg-warning text-dark mb-3">Tin mới nhất</span>
+                    <h1 class="display-4 fw-bold mb-4">Blog Công Nghệ</h1>
+                    <p class="lead mb-4">Khám phá những tin tức, đánh giá và xu hướng công nghệ mới nhất</p>
+                    <form class="d-flex gap-2 mb-3">
+                        <input type="search" class="form-control form-control-lg" placeholder="Tìm kiếm bài viết...">
+                        <button class="btn btn-warning btn-lg px-4"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="/images/blog-hero.png" alt="Blog Hero" class="img-fluid" style="max-height: 400px;">
+                </div>
+            </div>
+        </div>
+        <!-- Decorative shapes -->
+        <div class="position-absolute top-50 start-0 translate-middle-y">
+            <svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="100" fill="rgba(255,255,255,0.1)"/>
+                <circle cx="500" cy="300" r="150" fill="rgba(255,255,255,0.05)"/>
+            </svg>
+        </div>
+    </section>
+
+    <div class="container py-5">
+        <!-- Featured Posts -->
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Bài Viết Nổi Bật</h2>
+                <a href="/blog/featured" class="btn btn-outline-primary">Xem tất cả <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+            <div class="row g-4">
+                <!-- Featured Post 1 -->
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100 hover-scale">
+                        <div class="position-relative">
+                            <img src="/images/blog1.jpg" class="card-img-top" alt="Featured Post" style="height: 300px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-primary">Công nghệ</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="/images/author1.jpg" class="rounded-circle me-2" width="30" height="30" alt="Author">
+                                <span class="text-muted small">Nguyễn Văn A</span>
+                                <span class="mx-2">•</span>
+                                <span class="text-muted small">5 phút đọc</span>
+                            </div>
+                            <h3 class="card-title h4">Top 10 smartphone đáng mua nhất năm 2024</h3>
+                            <p class="card-text text-muted">Tổng hợp những smartphone cao cấp có hiệu năng mạnh mẽ và camera chất lượng nhất trong năm 2024.</p>
+                            <div class="d-flex align-items-center">
+                                <a href="/blog/post-1" class="btn btn-link text-primary p-0">Đọc tiếp <i class="fas fa-arrow-right ms-2"></i></a>
+                                <div class="ms-auto">
+                                    <button class="btn btn-light btn-sm me-2"><i class="far fa-heart"></i> 245</button>
+                                    <button class="btn btn-light btn-sm"><i class="far fa-comment"></i> 56</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Post 2 -->
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="card border-0 shadow-sm hover-scale">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="/images/blog2.jpg" class="img-fluid h-100" alt="Post" style="object-fit: cover;">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <span class="badge bg-success mb-2">Đánh giá</span>
+                                            <h4 class="card-title h5">Đánh giá chi tiết MacBook Pro M3 Max</h4>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span class="text-muted small">Trần Thị B</span>
+                                                <span class="mx-2">•</span>
+                                                <span class="text-muted small">3 phút đọc</span>
+                                            </div>
+                                            <a href="/blog/post-2" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card border-0 shadow-sm hover-scale">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="/images/blog3.jpg" class="img-fluid h-100" alt="Post" style="object-fit: cover;">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <span class="badge bg-info mb-2">Thủ thuật</span>
+                                            <h4 class="card-title h5">15 mẹo hay khi sử dụng iPhone không phải ai cũng biết</h4>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span class="text-muted small">Lê Văn C</span>
+                                                <span class="mx-2">•</span>
+                                                <span class="text-muted small">4 phút đọc</span>
+                                            </div>
+                                            <a href="/blog/post-3" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-4">Khám phá theo chủ đề</h3>
+            <div class="row g-3">
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="/blog/category/mobile" class="text-decoration-none">
+                        <div class="card bg-gradient h-100 border-0 shadow-sm hover-scale text-center p-3">
+                            <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-block mx-auto mb-2" style="width: 60px;">
+                                <i class="fas fa-mobile-alt text-primary"></i>
+                            </div>
+                            <h6 class="card-title text-dark mb-0">Di động</h6>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="/blog/category/laptop" class="text-decoration-none">
+                        <div class="card bg-gradient h-100 border-0 shadow-sm hover-scale text-center p-3">
+                            <div class="rounded-circle bg-success bg-opacity-10 p-3 d-inline-block mx-auto mb-2" style="width: 60px;">
+                                <i class="fas fa-laptop text-success"></i>
+                            </div>
+                            <h6 class="card-title text-dark mb-0">Laptop</h6>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="/blog/category/gaming" class="text-decoration-none">
+                        <div class="card bg-gradient h-100 border-0 shadow-sm hover-scale text-center p-3">
+                            <div class="rounded-circle bg-danger bg-opacity-10 p-3 d-inline-block mx-auto mb-2" style="width: 60px;">
+                                <i class="fas fa-gamepad text-danger"></i>
+                            </div>
+                            <h6 class="card-title text-dark mb-0">Gaming</h6>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="/blog/category/accessories" class="text-decoration-none">
+                        <div class="card bg-gradient h-100 border-0 shadow-sm hover-scale text-center p-3">
+                            <div class="rounded-circle bg-warning bg-opacity-10 p-3 d-inline-block mx-auto mb-2" style="width: 60px;">
+                                <i class="fas fa-headphones text-warning"></i>
+                            </div>
+                            <h6 class="card-title text-dark mb-0">Phụ kiện</h6>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="/blog/category/news" class="text-decoration-none">
+                        <div class="card bg-gradient h-100 border-0 shadow-sm hover-scale text-center p-3">
+                            <div class="rounded-circle bg-info bg-opacity-10 p-3 d-inline-block mx-auto mb-2" style="width: 60px;">
+                                <i class="fas fa-newspaper text-info"></i>
+                            </div>
+                            <h6 class="card-title text-dark mb-0">Tin tức</h6>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="/blog/category/tips" class="text-decoration-none">
+                        <div class="card bg-gradient h-100 border-0 shadow-sm hover-scale text-center p-3">
+                            <div class="rounded-circle bg-secondary bg-opacity-10 p-3 d-inline-block mx-auto mb-2" style="width: 60px;">
+                                <i class="fas fa-lightbulb text-secondary"></i>
+                            </div>
+                            <h6 class="card-title text-dark mb-0">Thủ thuật</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Posts -->
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold">Bài viết mới nhất</h3>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary btn-sm post-scroll-left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="btn btn-outline-primary btn-sm post-scroll-right"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="row posts-scroll" style="overflow-x: auto; flex-wrap: nowrap;">
+                <!-- Post Card 1 -->
+                <div class="col-lg-4 col-md-6" style="min-width: 350px;">
+                    <div class="card border-0 shadow-sm hover-scale mb-4">
+                        <img src="/images/blog4.jpg" class="card-img-top" alt="Post" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <span class="badge bg-danger mb-2">Gaming</span>
+                            <h4 class="card-title h5">Top 5 gaming laptop đáng mua nhất 2024</h4>
+                            <p class="card-text text-muted small">Tổng hợp những laptop gaming có hiệu năng mạnh mẽ nhất dành cho game thủ...</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <img src="/images/author2.jpg" class="rounded-circle me-2" width="30" height="30" alt="Author">
+                                <div>
+                                    <p class="mb-0 small">Phạm Văn D</p>
+                                    <p class="text-muted mb-0 small">2 giờ trước</p>
+                                </div>
+                                <a href="/blog/post-4" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post Card 2 -->
+                <div class="col-lg-4 col-md-6" style="min-width: 350px;">
+                    <div class="card border-0 shadow-sm hover-scale mb-4">
+                        <img src="/images/blog5.jpg" class="card-img-top" alt="Post" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">Thủ thuật</span>
+                            <h4 class="card-title h5">Cách tăng tốc laptop Windows 11 hiệu quả</h4>
+                            <p class="card-text text-muted small">Hướng dẫn chi tiết các cách tối ưu và tăng tốc laptop chạy Windows 11...</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <img src="/images/author3.jpg" class="rounded-circle me-2" width="30" height="30" alt="Author">
+                                <div>
+                                    <p class="mb-0 small">Hoàng Thị E</p>
+                                    <p class="text-muted mb-0 small">3 giờ trước</p>
+                                </div>
+                                <a href="/blog/post-5" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post Card 3 -->
+                <div class="col-lg-4 col-md-6" style="min-width: 350px;">
+                    <div class="card border-0 shadow-sm hover-scale mb-4">
+                        <img src="/images/blog6.jpg" class="card-img-top" alt="Post" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Đánh giá</span>
+                            <h4 class="card-title h5">Đánh giá tai nghe Sony WH-1000XM5</h4>
+                            <p class="card-text text-muted small">Review chi tiết tai nghe chống ồn cao cấp mới nhất từ Sony...</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <img src="/images/author4.jpg" class="rounded-circle me-2" width="30" height="30" alt="Author">
+                                <div>
+                                    <p class="mb-0 small">Vũ Văn F</p>
+                                    <p class="text-muted mb-0 small">5 giờ trước</p>
+                                </div>
+                                <a href="/blog/post-6" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="bg-primary text-white rounded-4 p-5 text-center">
+            <h3 class="fw-bold mb-3">Đăng ký nhận tin</h3>
+            <p class="mb-4">Nhận những bài viết mới nhất về công nghệ mỗi tuần</p>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control form-control-lg" placeholder="Email của bạn">
+                        <button class="btn btn-warning btn-lg px-4">Đăng ký</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Custom CSS -->
+<style>
+.hover-scale {
+    transition: transform 0.2s ease-in-out;
+}
+.hover-scale:hover {
+    transform: translateY(-5px);
+}
+.posts-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.posts-scroll::-webkit-scrollbar {
+    display: none;
+}
+.bg-gradient {
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+}
+</style>
+
+<!-- Custom JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const postsContainer = document.querySelector('.posts-scroll');
+    const scrollLeftBtn = document.querySelector('.post-scroll-left');
+    const scrollRightBtn = document.querySelector('.post-scroll-right');
+    
+    scrollLeftBtn.addEventListener('click', () => {
+        postsContainer.scrollBy({
+            left: -350,
+            behavior: 'smooth'
+        });
+    });
+    
+    scrollRightBtn.addEventListener('click', () => {
+        postsContainer.scrollBy({
+            left: 350,
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
+

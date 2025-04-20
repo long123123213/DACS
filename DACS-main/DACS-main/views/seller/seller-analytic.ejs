@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kênh Người Bán - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+
+    <div class="seller-layout">
+        <main class="main-content">
+            <section id="analytics" class="content-section">
+                <!-- Quick Stats Section -->
+                <div class="quick-stats">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Doanh Thu Hôm Nay</h3>
+                            <p class="stat-value">2.5M VNĐ</p>
+                            <p class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 12% so với hôm qua
+                            </p>
+                        </div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Đơn Hàng Mới</h3>
+                            <p class="stat-value">25</p>
+                            <p class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 8% so với hôm qua
+                            </p>
+                        </div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Khách Hàng Mới</h3>
+                            <p class="stat-value">18</p>
+                            <p class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 5% so với hôm qua
+                            </p>
+                        </div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Sản Phẩm Đã Bán</h3>
+                            <p class="stat-value">42</p>
+                            <p class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 15% so với hôm qua
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Chart Section -->
+                <div class="chart-section">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Thống Kê Doanh Thu</h3>
+                            <div class="chart-actions">
+                                <button class="btn-outline active">Ngày</button>
+                                <button class="btn-outline">Tuần</button>
+                                <button class="btn-outline">Tháng</button>
+                                <button class="btn-outline">Năm</button>
+                            </div>
+                        </div>
+                        <div class="chart-content">
+                            <!-- Placeholder for actual chart -->
+                            <div class="chart-placeholder" style="height: 300px;">
+                                [Biểu đồ doanh thu]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Grid -->
+                <div class="analytics-grid">
+                    <!-- Top Products -->
+                    <div class="grid-card">
+                        <div class="card-header">
+                            <h3>Top Sản Phẩm Bán Chạy</h3>
+                            <a href="#" class="view-all">Xem tất cả</a>
+                        </div>
+                        <div class="product-list">
+                            <div class="product-item">
+                                <img src="/images/product-placeholder.jpg" alt="Product" class="product-img">
+                                <div class="product-info">
+                                    <h4>iPhone 14 Pro Max</h4>
+                                    <p>Đã bán: 50 | Doanh thu: 1.5B VNĐ</p>
+                                </div>
+                                <div class="product-trend positive">
+                                    <i class="fas fa-arrow-up"></i> 15%
+                                </div>
+                            </div>
+                            <!-- Add more product items as needed -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Orders -->
+                    <div class="grid-card">
+                        <div class="card-header">
+                            <h3>Đơn Hàng Gần Đây</h3>
+                            <a href="#" class="view-all">Xem tất cả</a>
+                        </div>
+                        <div class="order-list">
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <h4>#ORD-2024001</h4>
+                                    <p>Khách hàng: Nguyễn Văn A</p>
+                                    <span class="order-status success">Đã giao hàng</span>
+                                </div>
+                                <div class="order-amount">
+                                    2.5M VNĐ
+                                </div>
+                            </div>
+                            <!-- Add more order items as needed -->
+                        </div>
+                    </div>
+
+                    <!-- Customer Demographics -->
+                    <div class="grid-card">
+                        <div class="card-header">
+                            <h3>Phân Tích Khách Hàng</h3>
+                        </div>
+                        <div class="demographics-chart">
+                            <!-- Placeholder for demographics chart -->
+                            <div class="chart-placeholder" style="height: 200px;">
+                                [Biểu đồ phân tích khách hàng]
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

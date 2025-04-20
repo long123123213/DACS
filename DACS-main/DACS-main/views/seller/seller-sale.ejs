@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Mã Giảm Giá - MegaStore VN</title>
+    <link rel="stylesheet" href="/css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="seller-header">
+        <div class="container">
+            <div class="logo">
+                <h1>MegaStore VN</h1>
+                <span class="seller-badge">Kênh Người Bán</span>
+            </div>
+            <div class="header-right">
+                <a href="#" class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-menu">
+                    <img src="/images/avatar-default.jpg" alt="User Avatar" class="avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <%- include('./../elements/navbar') %>
+
+    <div class="seller-layout">
+        <main class="main-content">
+            <section class="content-section">
+                <div class="section-header">
+                    <h2>Quản Lý Mã Giảm Giá</h2>
+                    <div class="section-actions">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Tìm kiếm mã giảm giá...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <select class="filter-select">
+                            <option value="all">Tất cả trạng thái</option>
+                            <option value="active">Đang hoạt động</option>
+                            <option value="expired">Đã hết hạn</option>
+                            <option value="scheduled">Chưa bắt đầu</option>
+                        </select>
+                        <button class="btn-primary" onclick="openAddVoucherModal()">
+                            <i class="fas fa-plus"></i> Tạo mã giảm giá
+                        </button>
+                    </div>
+                </div>
+
+                <div class="voucher-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã giảm giá</th>
+                                <th>Loại giảm giá</th>
+                                <th>Giá trị</th>
+                                <th>Điều kiện</th>
+                                <th>Thời gian</th>
+                                <th>Đã sử dụng</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="voucher-code">
+                                        <span>SUMMER2024</span>
+                                        <button class="btn-icon copy" title="Sao chép">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>Giảm giá theo %</td>
+                                <td>20%</td>
+                                <td>Đơn hàng từ 500,000 ₫</td>
+                                <td>
+                                    <div class="date-range">
+                                        <span>01/04/2024</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                        <span>30/04/2024</span>
+                                    </div>
+                                </td>
+                                <td>150/500</td>
+                                <td>
+                                    <span class="status-badge active">Đang hoạt động</span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon edit" onclick="openEditVoucherModal()" title="Sửa">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon delete" title="Xóa">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="btn-page" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-page active">1</button>
+                    <button class="btn-page">2</button>
+                    <button class="btn-page">3</button>
+                    <span class="pagination-dots">...</span>
+                    <button class="btn-page">10</button>
+                    <button class="btn-page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Add/Edit Voucher Modal -->
+            <div class="modal" id="voucherModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Tạo Mã Giảm Giá Mới</h3>
+                        <button class="btn-close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="voucher-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Mã giảm giá</label>
+                                    <input type="text" placeholder="Nhập mã giảm giá">
+                                </div>
+                                <div class="form-group">
+                                    <label>Loại giảm giá</label>
+                                    <select>
+                                        <option value="percentage">Giảm giá theo %</option>
+                                        <option value="fixed">Giảm giá cố định</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Giá trị giảm giá</label>
+                                    <input type="number" placeholder="Nhập giá trị">
+                                </div>
+                                <div class="form-group">
+                                    <label>Điều kiện áp dụng</label>
+                                    <input type="number" placeholder="Đơn hàng tối thiểu">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Thời gian bắt đầu</label>
+                                    <input type="datetime-local">
+                                </div>
+                                <div class="form-group">
+                                    <label>Thời gian kết thúc</label>
+                                    <input type="datetime-local">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Số lượng mã</label>
+                                    <input type="number" placeholder="Nhập số lượng">
+                                </div>
+                                <div class="form-group">
+                                    <label>Giới hạn sử dụng</label>
+                                    <input type="number" placeholder="Số lần sử dụng tối đa">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Áp dụng cho</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" checked>
+                                        Tất cả sản phẩm
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        Danh mục cụ thể
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox">
+                                        Sản phẩm cụ thể
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-outline" onclick="closeVoucherModal()">Hủy</button>
+                        <button class="btn-primary">
+                            <i class="fas fa-save"></i> Lưu mã giảm giá
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function openAddVoucherModal() {
+            document.getElementById('voucherModal').classList.add('active');
+        }
+
+        function openEditVoucherModal() {
+            document.getElementById('voucherModal').classList.add('active');
+            document.querySelector('.modal-header h3').textContent = 'Chỉnh Sửa Mã Giảm Giá';
+        }
+
+        function closeVoucherModal() {
+            document.getElementById('voucherModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('voucherModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVoucherModal();
+            }
+        });
+
+        // Close modal when clicking close button
+        document.querySelector('.btn-close').addEventListener('click', closeVoucherModal);
+
+        // Copy voucher code
+        document.querySelectorAll('.btn-icon.copy').forEach(button => {
+            button.addEventListener('click', function() {
+                const code = this.closest('.voucher-code').querySelector('span').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    // Show success message
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+                    tooltip.textContent = 'Đã sao chép!';
+                    this.appendChild(tooltip);
+                    setTimeout(() => tooltip.remove(), 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
