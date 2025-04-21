@@ -1,0 +1,152 @@
+
+<link rel="stylesheet" href="/css/profile.css">
+
+<div class="profile-container">
+    <div class="container py-5">
+        <div class="row">
+            <!-- Profile Sidebar -->
+            <div class="col-lg-3">
+                <div class="profile-sidebar card shadow-sm">
+                    <div class="profile-header text-center p-4">
+                        <div class="profile-image-container mb-3">
+                            <img src="<%= user.avatar || '/images/default-avatar.png' %>" alt="Profile Image" class="rounded-circle profile-image">
+                            <div class="image-upload-overlay">
+                                <label for="profile-image-upload">
+                                    <i class="fas fa-camera"></i>
+                                </label>
+                                <input type="file" id="profile-image-upload" class="d-none">
+                            </div>
+                        </div>
+                        <h5 class="mb-2"><%= user.hoTen %></h5>
+                        <p class="text-muted mb-0"><%= user.email %></p>
+                    </div>
+                    <div class="profile-menu">
+                        <ul class="list-unstyled mb-0">
+                            <li class="active">
+                                <a href="#profile-info" class="d-flex align-items-center p-3">
+                                    <i class="fas fa-user me-3"></i>
+                                    Thông tin cá nhân
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#orders" class="d-flex align-items-center p-3">
+                                    <i class="fas fa-shopping-bag me-3"></i>
+                                    Đơn mua
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#notifications" class="d-flex align-items-center p-3">
+                                    <i class="fas fa-bell me-3"></i>
+                                    Thông báo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#address" class="d-flex align-items-center p-3">
+                                    <i class="fas fa-map-marker-alt me-3"></i>
+                                    Địa chỉ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#payment" class="d-flex align-items-center p-3">
+                                    <i class="fas fa-credit-card me-3"></i>
+                                    Ngân hàng
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#security" class="d-flex align-items-center p-3">
+                                    <i class="fas fa-shield-alt me-3"></i>
+                                    Bảo mật
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="col-lg-9">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Thông tin cá nhân</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="profile-form">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Tên đăng nhập</label>
+                                        <input type="text" class="form-control" value="<%= user.username %>" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Họ và tên</label>
+                                        <input type="text" class="form-control" value="<%= user.hoTen %>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <div class="input-group">
+                                            <input type="email" class="form-control" value="<%= user.email %>" readonly>
+                                            <button class="btn btn-outline-secondary" type="button">Thay đổi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Số điện thoại</label>
+                                        <div class="input-group">
+                                            <input type="tel" class="form-control" value="<%= user.phone %>">
+                                            <button class="btn btn-outline-secondary" type="button">Thay đổi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Giới tính</label>
+                                        <div class="d-flex gap-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" <%= user.gender === 'male' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="male">Nam</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" <%= user.gender === 'female' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="female">Nữ</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gender" id="other" value="other" <%= user.gender === 'other' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="other">Khác</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Ngày sinh</label>
+                                        <input type="date" class="form-control" value="<%= user.birthDate %>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn-save">
+                                    <i class="fas fa-check me-2"></i>
+                                    Lưu thay đổi
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,826 @@
+<link rel="stylesheet" href="/css/product-detail.css">
+
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="/">Trang chủ</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="/shop">Thời Trang Nữ</a>
+                <i class="fas fa-chevron-right"></i>
+                <span><%= product.name %></span>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="product-main">
+            <!-- Left Column - Product Images -->
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="<%= product.mainImage %>" alt="<%= product.name %>" id="mainImage">
+                    <% if (product.discount > 0) { %>
+                        <div class="discount-badge">
+                            <span class="discount-text">-<%= product.discount %>%</span>
+                            <span class="discount-label">GIẢM</span>
+                        </div>
+                    <% } %>
+                    <div class="freeship-badge">
+                        <img src="/images/freeship-badge.png" alt="Free Ship">
+                    </div>
+                </div>
+                <div class="thumbnail-list">
+                    <% if (product.images && Array.isArray(product.images)) { %>
+                        <% product.images.forEach(function(image, index) { %>
+                            <div class="thumbnail <%= index === 0 ? 'active' : '' %>" 
+                                onclick="changeMainImage(this)"
+                                data-index="<%= index %>">
+                                <img src="<%= image %>" alt="<%= product.name %> - View <%= index + 1 %>">
+                            </div>
+                        <% }); %>
+                    <% } %>
+                </div>
+                <div class="share-section">
+                    <span>Chia sẻ:</span>
+                    <div class="social-buttons">
+                        <button class="share-btn messenger"><i class="fab fa-facebook-messenger"></i></button>
+                        <button class="share-btn facebook"><i class="fab fa-facebook"></i></button>
+                        <button class="share-btn pinterest"><i class="fab fa-pinterest"></i></button>
+                        <button class="share-btn twitter"><i class="fab fa-twitter"></i></button>
+                    </div>
+                    <button class="like-btn">
+                        <i class="far fa-heart"></i>
+                        <span class="like-count"><%= product.likes || 0 %></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column - Product Info -->
+            <div class="product-info">
+                <div class="product-header">
+                    <div class="product-badges">
+                        <span class="badge mall">Mall</span>
+                        <span class="badge yeu-thich">Yêu thích</span>
+                    </div>
+                    <h1 class="product-title"><%= product.name %></h1>
+                    <div class="product-meta">
+                        <div class="rating-section">
+                            <div class="rating-stars">
+                                <% for(let i = 0; i < 5; i++) { %>
+                                    <i class="fas fa-star <%= i < Math.floor(product.rating) ? 'filled' : '' %>"></i>
+                                <% } %>
+                                <span class="rating-value"><%= product.rating %></span>
+                            </div>
+                            <div class="review-count">
+                                <span><%= product.reviewCount %></span>
+                                <span>Đánh Giá</span>
+                            </div>
+                            <div class="sold-count">
+                                <span><%= product.soldCount || 0 %></span>
+                                <span>Đã bán</span>
+                            </div>
+                        </div>
+                        <button class="btn-report" title="Báo cáo">
+                            <i class="fas fa-flag"></i>
+                            <span>Tố cáo</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="price-section">
+                    <% if (product.discount > 0) { %>
+                        <div class="original-price">₫<%= product.oldPrice.toLocaleString('vi-VN') %></div>
+                    <% } %>
+                    <div class="current-price">
+                        <span class="currency">₫</span>
+                        <span class="amount"><%= product.price.toLocaleString('vi-VN') %></span>
+                        <% if (product.discount > 0) { %>
+                            <span class="discount-pill"><%= product.discount %>% GIẢM</span>
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- Mã Giảm Giá -->
+                <div class="voucher-section">
+                    <div class="section-title">
+                        <i class="fas fa-ticket-alt"></i>
+                        Mã Giảm Giá
+                    </div>
+                    <div class="voucher-list">
+                        <div class="voucher-item">
+                            <div class="voucher-info">
+                                <span class="voucher-amount">Giảm ₫30k</span>
+                                <span class="voucher-min">Đơn Tối Thiểu ₫239k</span>
+                            </div>
+                            <button class="btn-save-voucher">Lưu</button>
+                        </div>
+                        <div class="voucher-item">
+                            <div class="voucher-info">
+                                <span class="voucher-amount">Giảm ₫15k</span>
+                                <span class="voucher-min">Đơn Tối Thiểu ₫99k</span>
+                            </div>
+                            <button class="btn-save-voucher">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vận Chuyển -->
+                <div class="shipping-section">
+                    <div class="section-title">
+                        <i class="fas fa-truck"></i>
+                        Vận Chuyển
+                    </div>
+                    <div class="shipping-info">
+                        <div class="shipping-to">
+                            <span>Vận chuyển tới</span>
+                            <div class="location-select">
+                                <select id="province">
+                                    <option value="">Chọn tỉnh/thành</option>
+                                </select>
+                                <select id="district">
+                                    <option value="">Chọn quận/huyện</option>
+                                </select>
+                                <select id="ward">
+                                    <option value="">Chọn phường/xã</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="shipping-fee">
+                            <span>Phí vận chuyển</span>
+                            <div class="fee-info">
+                                <span>₫0 - ₫22.000</span>
+                                <i class="fas fa-info-circle" title="Chi tiết phí vận chuyển"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Variants Selection -->
+                <div class="variants-section">
+                    <div class="color-selection">
+                        <label>Màu Sắc:</label>
+                        <div class="color-options">
+                            <% product.colors.forEach(function(color) { %>
+                                <button class="color-btn" 
+                                        data-color="<%= color.name %>"
+                                        data-code="<%= color.code %>">
+                                    <span class="color-preview" style="background-color: <%= color.code %>"></span>
+                                    <span class="color-name"><%= color.name %></span>
+                                </button>
+                            <% }); %>
+                        </div>
+                    </div>
+
+                    <div class="size-selection">
+                        <div class="size-header">
+                            <label>Kích Thước:</label>
+                            <a href="#size-guide" class="size-guide">
+                                <i class="fas fa-ruler"></i>
+                                Bảng Size
+                            </a>
+                        </div>
+                        <div class="size-options">
+                            <button class="size-btn">M</button>
+                            <button class="size-btn">L</button>
+                        </div>
+                    </div>
+
+                    <div class="quantity-section">
+                        <label>Số Lượng:</label>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" value="1" min="1" max="<%= product.stock %>" id="quantity">
+                            <button class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                            <span class="stock-info"><%= product.stock %> sản phẩm có sẵn</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn-add-cart">
+                        <i class="fas fa-cart-plus"></i>
+                        <span>Thêm Vào Giỏ Hàng</span>
+                    </button>
+                    <button class="btn-buy-now">
+                        <span>Mua Ngay</span>
+                        <small>Không thể hoàn tác</small>
+                    </button>
+                </div>
+
+                <!-- Shop Guarantee -->
+                <div class="shop-guarantee">
+                    <div class="guarantee-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div class="guarantee-text">
+                            <span>Shopee Đảm Bảo</span>
+                            <span class="sub-text">3 Ngày Trả Hàng / Hoàn Tiền</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product-detail-container">
+    <!-- Shop Information Section -->
+    <div class="container">
+        <div class="shop-info-section">
+            <div class="shop-header">
+                <div class="shop-avatar">
+                    <img src="/images/shop-avatar.png" alt="RIDICULOUS_STUDIO">
+                </div>
+                <div class="shop-details">
+                    <h2 class="shop-name">RIDICULOUS_STUDIO</h2>
+                    <div class="shop-status">
+                        <span class="status-badge online">Online 54 Phút Trước</span>
+                        <div class="shop-actions">
+                            <button class="btn-chat">
+                                <i class="far fa-comment-dots"></i>
+                                Chat Ngay
+                            </button>
+                            <button class="btn-view-shop">
+                                <i class="fas fa-store"></i>
+                                Xem Shop
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-metrics">
+                <div class="metric-item">
+                    <div class="metric-label">Đánh Giá</div>
+                    <div class="metric-value highlight">14,6k</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Tỉ Lệ Phản Hồi</div>
+                    <div class="metric-value highlight">88%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Tham Gia</div>
+                    <div class="metric-value">5 năm trước</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Sản Phẩm</div>
+                    <div class="metric-value">93</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Thời Gian Phản Hồi</div>
+                    <div class="metric-value">trong vài giờ</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-label">Người Theo Dõi</div>
+                    <div class="metric-value highlight">87,1k</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Chi Tiết Sản Phẩm -->
+<div class="container">
+    <div class="product-details-wrapper">
+        <!-- Left Column - Product Details -->
+        <div class="product-details">
+            <h2 class="section-title">CHI TIẾT SẢN PHẨM</h2>
+            
+            <div class="details-table">
+                <div class="detail-row">
+                    <div class="detail-label">Danh Mục</div>
+                    <div class="detail-content">
+                        <a href="/shop">Shopee</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="/shop/thiet-bi-dien-tu">Thiết Bị Điện Tử</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="/shop/linh-phu-kien">Linh phụ kiện</a>
+                    </div>
+                </div>
+                
+                <div class="detail-row">
+                    <div class="detail-label">Kho</div>
+                    <div class="detail-content">14</div>
+                </div>
+                
+                <div class="detail-row">
+                    <div class="detail-label">Gửi từ</div>
+                    <div class="detail-content">Bến Tre</div>
+                </div>
+            </div>
+
+            <div class="product-description">
+                <h3>MÔ TẢ SẢN PHẨM</h3>
+                
+                <p>SẢN PHẨM GỒM:</p>
+                <ul>
+                    <li>- 01 cái Lưới e cứng PVC bọc loa kiểu Marshall khổ to lưới bọc loa chuyên dụng LT Speaker</li>
+                    <li>- Khổ lưới tùy lựa chọn khi mua hàng</li>
+                </ul>
+                
+                <p>TRÌNH TRẠNG SẢN PHẨM:</p>
+                <ul>
+                    <li>- Hàng mới</li>
+                </ul>
+                
+                <p>THÔNG TIN NỔI BẬT:</p>
+                <ul>
+                    <li>- Lưới có độ hoàn thiện cao nhìn rất đẹp</li>
+                    <li>- Khổ tối đa 60mm có hỗ trợ cắt chiều dài trên 1m</li>
+                    <li>- Chất liệu nhựa PVC cho độ bền cơ học cao, Không thấm nước giúp lưới không bị ẩm mốc mùi hôi như 1 số loại khác</li>
+                    <li>- Tên phân loại hàng chỉ mang tính chất phân loại có thể không phản ánh đúng màu sắc sản phẩm (Màu sắc thực tế như hình)</li>
+                </ul>
+                
+                <p>THÔNG SỐ KỸ THUẬT:</p>
+                <ul>
+                    <li>- Chất liệu: PVC</li>
+                    <li>- Màu sắc: Đen</li>
+                    <li>- Kích thước: 60mm x 1m</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Column - Shop Vouchers -->
+        <div class="shop-vouchers">
+            <h2 class="section-title">Mã giảm giá của Shop</h2>
+            <div class="voucher-list">
+                <div class="voucher-item">
+                    <div class="voucher-left">
+                        <div class="voucher-amount">Giảm ₫30k</div>
+                        <div class="voucher-min">Đơn Tối Thiểu ₫390k</div>
+                        <div class="voucher-expiry">HSD: 17.05.2025</div>
+                    </div>
+                    <div class="voucher-right">
+                        <button class="btn-save-voucher">Lưu</button>
+                    </div>
+                </div>
+
+                <div class="voucher-item">
+                    <div class="voucher-left">
+                        <div class="voucher-amount">Giảm ₫15k</div>
+                        <div class="voucher-min">Đơn Tối Thiểu ₫218k</div>
+                        <div class="voucher-expiry">HSD: 26.06.2025</div>
+                    </div>
+                    <div class="voucher-right">
+                        <button class="btn-save-voucher">Lưu</button>
+                    </div>
+                </div>
+
+                <div class="voucher-item">
+                    <div class="voucher-left">
+                        <div class="voucher-amount">Giảm ₫10k</div>
+                        <div class="voucher-min">Đơn Tối Thiểu ₫250k</div>
+                        <div class="voucher-expiry">HSD: 17.05.2025</div>
+                    </div>
+                    <div class="voucher-right">
+                        <button class="btn-save-voucher">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Reviews -->
+<div class="container">
+    <div class="product-reviews">
+        <div class="reviews-header">
+            <h2>ĐÁNH GIÁ SẢN PHẨM</h2>
+            <div class="rating-overview">
+                <div class="rating-score">
+                    <span class="score"><%= product.rating %></span>
+                    <span>trên 5</span>
+                    <div class="stars">
+                        <% for(let i = 0; i < 5; i++) { %>
+                            <i class="fas fa-star <%= i < Math.floor(product.rating) ? 'filled' : '' %>"></i>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="rating-filters">
+                    <button class="filter-btn active">Tất cả</button>
+                    <button class="filter-btn">5 Sao (<%= product.fiveStarCount || 19 %>)</button>
+                    <button class="filter-btn">4 Sao (<%= product.fourStarCount || 1 %>)</button>
+                    <button class="filter-btn">3 Sao (<%= product.threeStarCount || 0 %>)</button>
+                    <button class="filter-btn">2 Sao (<%= product.twoStarCount || 0 %>)</button>
+                    <button class="filter-btn">1 Sao (<%= product.oneStarCount || 0 %>)</button>
+                    <button class="filter-btn">Có Bình Luận (<%= product.commentCount || 0 %>)</button>
+                    <button class="filter-btn">Có Hình Ảnh / Video (<%= product.mediaReviewCount || 0 %>)</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-list">
+            <% const reviews = [
+                { 
+                    user: "n*****g",
+                    rating: 5,
+                    date: "2024-02-02 20:19",
+                    variant: "BROWN,M",
+                    content: "This review is for: Áo Hoodie Đen Ridiculous EEH 1.0 - Thêu Nổi 100% Nỉ Cotton"
+                },
+                {
+                    user: "n*****n",
+                    rating: 5,
+                    date: "2023-02-23 14:37",
+                    variant: "BROWN,M",
+                    content: "This review is for: Áo Hoodie Đen Ridiculous EEH 1.0 - Thêu Nổi 100% Nỉ Cotton"
+                }
+            ] %>
+            
+            <% reviews.forEach(function(review) { %>
+                <div class="review-item">
+                    <div class="review-user">
+                        <img src="/images/default-avatar.png" alt="User Avatar" class="user-avatar">
+                        <span class="user-name"><%= review.user %></span>
+                    </div>
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <% for(let i = 0; i < 5; i++) { %>
+                                <i class="fas fa-star <%= i < review.rating ? 'filled' : '' %>"></i>
+                            <% } %>
+                        </div>
+                        <div class="review-date"><%= review.date %> | Phân loại hàng: <%= review.variant %></div>
+                        <div class="review-text"><%= review.content %></div>
+                        <div class="review-actions">
+                            <button class="btn-helpful">
+                                <i class="far fa-thumbs-up"></i>
+                                Hữu ích?
+                            </button>
+                            <button class="btn-report">
+                                <i class="far fa-flag"></i>
+                                Báo cáo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="reviews-pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Related Products -->
+<div class="container">
+    <div class="related-products">
+        <div class="section-header">
+            <h2>CÁC SẢN PHẨM KHÁC CỦA SHOP</h2>
+            <a href="#" class="view-all">Xem Tất Cả <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        <div class="products-grid">
+            <% const relatedProducts = [
+                {
+                    id: 1,
+                    name: "Áo thun Ridiculous - SCRAPPED x 1 CHERRY",
+                    price: 160000,
+                    oldPrice: 299000,
+                    discount: 46,
+                    image: "/images/product1.jpg",
+                    soldCount: 5
+                },
+                {
+                    id: 2,
+                    name: "Áo thun Unisex Ridiculous -JERSEY 22",
+                    price: 199000,
+                    oldPrice: 359000,
+                    discount: 45,
+                    image: "/images/product2.jpg",
+                    soldCount: 12
+                }
+            ] %>
+
+            <% relatedProducts.forEach(function(product) { %>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                        <% if (product.discount > 0) { %>
+                            <div class="discount-tag">-<%= product.discount %>%</div>
+                        <% } %>
+                        <div class="mall-tag">Mall</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><%= product.name %></h3>
+                        <div class="product-price">
+                            <span class="current-price">₫<%= product.price.toLocaleString('vi-VN') %></span>
+                            <span class="sold-count">Đã bán <%= product.soldCount %></span>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</div>
+
+<!-- You May Also Like -->
+<div class="container">
+    <div class="recommended-products">
+        <div class="section-header">
+            <h2>CÓ THỂ BẠN CŨNG THÍCH</h2>
+        </div>
+        
+        <div class="products-grid">
+            <% const recommendedProducts = [
+                {
+                    id: 1,
+                    name: "Áo Hoodie Zip 2 Chiều Kim Loại",
+                    price: 254800,
+                    oldPrice: 499000,
+                    discount: 49,
+                    image: "/images/rec-product1.jpg",
+                    soldCount: 5,
+                    rating: 4.6
+                },
+                {
+                    id: 2,
+                    name: "IDEAL MỚI BẢN] Áo hoodie zip",
+                    price: 315000,
+                    oldPrice: 379000,
+                    discount: 17,
+                    image: "/images/rec-product2.jpg",
+                    soldCount: 48,
+                    rating: 4.6
+                }
+            ] %>
+
+            <% recommendedProducts.forEach(function(product) { %>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                        <% if (product.discount > 0) { %>
+                            <div class="discount-tag">-<%= product.discount %>%</div>
+                        <% } %>
+                        <div class="yeu-thich-tag">Yêu thích</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name"><%= product.name %></h3>
+                        <div class="product-price">
+                            <span class="current-price">₫<%= product.price.toLocaleString('vi-VN') %></span>
+                            <div class="price-info">
+                                <span class="rating"><%= product.rating %> ⭐</span>
+                                <span class="sold-count">Đã bán <%= product.soldCount %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</div>
+
+<script>
+// Image Gallery
+function changeMainImage(thumbnail) {
+    const mainImage = document.getElementById('mainImage');
+    mainImage.src = thumbnail.querySelector('img').src;
+    
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
+    });
+    thumbnail.classList.add('active');
+}
+
+// Color Selection
+document.querySelectorAll('.color-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+});
+
+// Size Selection
+document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+});
+
+// Quantity Controls
+const quantityInput = document.getElementById('quantity');
+const minusBtn = document.querySelector('.qty-btn.minus');
+const plusBtn = document.querySelector('.qty-btn.plus');
+
+minusBtn.addEventListener('click', () => {
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+        updateTotalPrice();
+    }
+});
+
+plusBtn.addEventListener('click', () => {
+    const currentValue = parseInt(quantityInput.value);
+    const max = parseInt(quantityInput.getAttribute('max'));
+    if (currentValue < max) {
+        quantityInput.value = currentValue + 1;
+        updateTotalPrice();
+    }
+});
+
+quantityInput.addEventListener('change', () => {
+    const value = parseInt(quantityInput.value);
+    const max = parseInt(quantityInput.getAttribute('max'));
+    if (value < 1) quantityInput.value = 1;
+    if (value > max) quantityInput.value = max;
+    updateTotalPrice();
+});
+
+// Update Total Price
+function updateTotalPrice() {
+    const quantity = parseInt(quantityInput.value);
+    const price = Number('<%- product.price %>');
+    const total = quantity * price;
+    document.querySelector('.current-price .amount').textContent = total.toLocaleString('vi-VN');
+}
+
+// Like Button
+document.querySelector('.btn-like').addEventListener('click', function() {
+    this.classList.toggle('active');
+    const icon = this.querySelector('i');
+    if (this.classList.contains('active')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+    } else {
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+    }
+});
+
+// Add to Cart Animation
+document.querySelector('.btn-add-cart').addEventListener('click', function() {
+    // Kiểm tra đã chọn màu và size
+    const selectedColor = document.querySelector('.color-btn.active');
+    const selectedSize = document.querySelector('.size-btn.active');
+    
+    if (!selectedColor || !selectedSize) {
+        alert('Vui lòng chọn màu sắc và kích thước');
+        return;
+    }
+
+    const quantity = parseInt(quantityInput.value);
+    const productData = {
+        id: '<%- product.id %>',
+        name: '<%- product.name %>',
+        price: Number('<%- product.price %>'),
+        color: selectedColor.dataset.color,
+        size: selectedSize.textContent,
+        quantity: quantity,
+        image: document.getElementById('mainImage').src
+    };
+
+    // Gửi request thêm vào giỏ hàng
+    fetch('/api/cart/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            this.innerHTML = '<i class="fas fa-check"></i> Đã thêm vào giỏ';
+            this.classList.add('added');
+            
+            // Cập nhật số lượng giỏ hàng
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                cartCount.textContent = data.cartCount;
+            }
+
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-cart-plus"></i> Thêm Vào Giỏ Hàng';
+                this.classList.remove('added');
+            }, 2000);
+        } else {
+            alert(data.message || 'Có lỗi xảy ra');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Có lỗi xảy ra khi thêm vào giỏ hàng');
+    });
+});
+
+// Buy Now Button
+document.querySelector('.btn-buy-now').addEventListener('click', function() {
+    const selectedColor = document.querySelector('.color-btn.active');
+    const selectedSize = document.querySelector('.size-btn.active');
+    
+    if (!selectedColor || !selectedSize) {
+        alert('Vui lòng chọn màu sắc và kích thước');
+        return;
+    }
+
+    const quantity = parseInt(quantityInput.value);
+    const productData = {
+        id: '<%- product.id %>',
+        color: selectedColor.dataset.color,
+        size: selectedSize.textContent,
+        quantity: quantity
+    };
+
+    // Chuyển đến trang thanh toán
+    const queryString = new URLSearchParams(productData).toString();
+    window.location.href = '/checkout?' + queryString;
+});
+
+// Save Voucher
+document.querySelectorAll('.btn-save-voucher').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const voucherAmount = this.parentElement.querySelector('.voucher-amount').textContent;
+        this.textContent = 'Đã Lưu';
+        this.disabled = true;
+        alert(`Đã lưu voucher ${voucherAmount}`);
+    });
+});
+
+// Location Selects
+const provinceSelect = document.getElementById('province');
+const districtSelect = document.getElementById('district');
+const wardSelect = document.getElementById('ward');
+
+// Fetch provinces
+fetch('/api/provinces')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(province => {
+            const option = new Option(province.name, province.code);
+            provinceSelect.add(option);
+        });
+    });
+
+// Update districts when province changes
+provinceSelect.addEventListener('change', function() {
+    const provinceCode = this.value;
+    districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
+    wardSelect.innerHTML = '<option value="">Chọn phường/xã</option>';
+    
+    if (provinceCode) {
+        fetch(`/api/districts/${provinceCode}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(district => {
+                    const option = new Option(district.name, district.code);
+                    districtSelect.add(option);
+                });
+            });
+    }
+});
+
+// Update wards when district changes
+districtSelect.addEventListener('change', function() {
+    const districtCode = this.value;
+    wardSelect.innerHTML = '<option value="">Chọn phường/xã</option>';
+    
+    if (districtCode) {
+        fetch(`/api/wards/${districtCode}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(ward => {
+                    const option = new Option(ward.name, ward.code);
+                    wardSelect.add(option);
+                });
+            });
+    }
+});
+
+// Update shipping fee when location changes
+wardSelect.addEventListener('change', function() {
+    const provinceCode = provinceSelect.value;
+    const districtCode = districtSelect.value;
+    const wardCode = this.value;
+    
+    if (provinceCode && districtCode && wardCode) {
+        fetch('/api/shipping-fee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                provinceCode,
+                districtCode,
+                wardCode,
+                productId: '<%- product.id %>'
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const feeInfo = document.querySelector('.fee-info span');
+            feeInfo.textContent = `₫${data.fee.toLocaleString('vi-VN')}`;
+        });
+    }
+});
+</script>
+
+
